@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="trainingPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>org.agoncal.training.javaee7.Book</class>
+        <class>org.agoncal.training.javaee7.CD</class>
+        <class>org.agoncal.training.javaee7.Chapter</class>
+        <class>org.agoncal.training.javaee7.Item</class>
+        <class>org.agoncal.training.javaee7.Track</class>
+        <properties>
+            <!-- Embedded mode -->
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:EE7Lab07DB;create=true"/>
+            <!-- Client Server mode -->
+            <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EE7Lab07DB;create=true"/>-->
+            <!--<property name="javax.persistence.jdbc.user" value="APP"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value="APP"/>-->
+
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="lab07Create.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab07Drop.ddl"/>
+
+            <property name="eclipselink.logging.level" value="INFO"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+

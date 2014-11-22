@@ -29,6 +29,8 @@
     <properties>
         <!-- Java EE -->
         <version.glassfish>4.1</version.glassfish>
+        <!-- UI -->
+        <version.primefaces>5.1</version.primefaces>
         <!-- Test -->
         <version.junit>4.11</version.junit>
         <!-- Plugins -->
@@ -45,6 +47,12 @@
                 <groupId>org.glassfish.main.extras</groupId>
                 <artifactId>glassfish-embedded-all</artifactId>
                 <version>${version.glassfish}</version>
+            </dependency>
+            <!-- Test -->
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${version.primefaces}</version>
             </dependency>
             <!-- Test -->
             <dependency>

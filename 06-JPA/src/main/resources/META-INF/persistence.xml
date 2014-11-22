@@ -5,11 +5,11 @@
              version="2.1">
     <persistence-unit name="trainingPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>org.agoncal.training.javaee7.Book</class>
-        <class>org.agoncal.training.javaee7.CD</class>
-        <class>org.agoncal.training.javaee7.Chapter</class>
-        <class>org.agoncal.training.javaee7.Item</class>
-        <class>org.agoncal.training.javaee7.Track</class>
+        <class>org.agoncal.training.javaee.Book</class>
+        <class>org.agoncal.training.javaee.CD</class>
+        <class>org.agoncal.training.javaee.Chapter</class>
+        <class>org.agoncal.training.javaee.Item</class>
+        <class>org.agoncal.training.javaee.Track</class>
         <properties>
             <!-- Embedded mode -->
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>

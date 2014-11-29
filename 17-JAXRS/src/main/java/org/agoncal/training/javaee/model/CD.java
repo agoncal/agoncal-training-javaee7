@@ -1,6 +1,6 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.validation.MusicGenre;
+import org.agoncal.training.javaee.constraints.MusicGenre;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

@@ -1,5 +1,8 @@
 package org.agoncal.training.javaee.view;
 
+import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.CD;
+import org.agoncal.training.javaee.model.Language;
 import org.agoncal.training.javaee.service.ItemEJB;
 
 import javax.annotation.PostConstruct;

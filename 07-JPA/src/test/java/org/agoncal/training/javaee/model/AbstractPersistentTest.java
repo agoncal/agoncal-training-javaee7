@@ -1,4 +1,4 @@
-package org.agoncal.training.javaee;
+package org.agoncal.training.javaee.model;
 
 import org.junit.After;
 import org.junit.Before;

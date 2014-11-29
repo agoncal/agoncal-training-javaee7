@@ -1,8 +1,5 @@
-package org.agoncal.training.javaee;
+package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Book;
-import org.agoncal.training.javaee.model.Chapter;
-import org.agoncal.training.javaee.model.Language;
 import org.junit.Test;
 
 import java.util.ArrayList;

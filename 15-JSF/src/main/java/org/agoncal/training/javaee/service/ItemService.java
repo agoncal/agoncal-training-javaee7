@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Stateless
 @Interceptors(LoggingInterceptor.class)
-public class ItemEJB {
+public class ItemService {
 
     // ======================================
     // =             Attributes             =

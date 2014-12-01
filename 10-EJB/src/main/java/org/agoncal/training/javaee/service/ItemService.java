@@ -6,9 +6,6 @@ import org.agoncal.training.javaee.model.Item;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -20,8 +17,7 @@ import java.util.List;
  *         --
  */
 @Stateless
-@Interceptors(LoggingInterceptor.class)
-public class ItemEJB {
+public class ItemService {
 
     // ======================================
     // =             Attributes             =
@@ -51,8 +47,6 @@ public class ItemEJB {
         return em.find(Book.class, id);
     }
 
-    // Breaks because the em.remove() needs a tx
-    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public void removeBook(Book book) {
         em.remove(em.merge(book));
     }

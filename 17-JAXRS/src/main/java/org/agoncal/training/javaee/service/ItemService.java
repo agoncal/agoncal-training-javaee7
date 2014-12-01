@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @Stateless
 @Interceptors(LoggingInterceptor.class)
 @Path("/items")
-public class ItemEJB {
+public class ItemService {
 
     // ======================================
     // =             Attributes             =
@@ -59,7 +59,7 @@ public class ItemEJB {
 //        em.flush(); // to get the id
 //        URI bookUri = uriInfo.getAbsolutePathBuilder().path(book.getId().toString()).build();
 //        Response resp = Response.created(bookUri).build();
-//        logger.fine("ItemEJB.createJaxbBook():" + resp.toString());
+//        logger.fine("ItemService.createJaxbBook():" + resp.toString());
 //        return resp;
 //    }
 

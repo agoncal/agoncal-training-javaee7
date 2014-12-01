@@ -1,7 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.*;
-import org.agoncal.training.javaee.service.ItemEJB;
+import org.agoncal.training.javaee.service.ItemService;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
@@ -31,7 +31,7 @@ public class Main {
         Context ctx = ec.getContext();
 
         // Looks up for the EJB
-        ItemEJB itemEJB = (ItemEJB) ctx.lookup("java:global/classes/ItemEJB");
+        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates an instance of book
         Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
@@ -59,28 +59,28 @@ public class Main {
         cd.setTracks(tracks);
 
         // Persists the book to the database
-        itemEJB.createBook(book);
+        itemService.createBook(book);
 
         // Persists the CD to the database
-        itemEJB.createCD(cd);
+        itemService.createCD(cd);
 
         // Finds all the items
         logger.info("##### All items");
-        List<Item> items = itemEJB.findAllItems();
+        List<Item> items = itemService.findAllItems();
         for (Item oneItem : items) {
             logger.info("# " + oneItem);
         }
 
         // Finds all the CDs
         logger.info("##### All CDs");
-        List<CD> cds = itemEJB.findAllCDs();
+        List<CD> cds = itemService.findAllCDs();
         for (CD oneCD : cds) {
             logger.info("# " + oneCD);
         }
 
         // Finds all the Books
         logger.info("##### All Books");
-        List<Book> books = itemEJB.findAllBooks();
+        List<Book> books = itemService.findAllBooks();
         for (Book oneBook : books) {
             logger.info("# " + oneBook);
         }

@@ -5,8 +5,9 @@ import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Item;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -16,14 +17,20 @@ import java.util.List;
  *         --
  */
 @Stateless
-public class ItemEJB {
+@Interceptors(LoggingInterceptor.class)
+public class ItemService {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    @PersistenceContext(unitName = "trainingPU")
+    @Inject
     private EntityManager em;
+
+    @Inject
+    @ThirteenDigits
+    /*@EightDigits*/
+    private NumberGenerator numberGenerator;
 
     // ======================================
     // =          Business methods          =
@@ -34,6 +41,7 @@ public class ItemEJB {
     }
 
     public Book createBook(Book book) {
+        book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
         return book;
     }

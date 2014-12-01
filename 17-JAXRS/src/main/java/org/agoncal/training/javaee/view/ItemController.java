@@ -3,7 +3,7 @@ package org.agoncal.training.javaee.view;
 import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
-import org.agoncal.training.javaee.service.ItemEJB;
+import org.agoncal.training.javaee.service.ItemService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -29,7 +29,7 @@ public class ItemController {
     // ======================================
 
     @Inject
-    private ItemEJB itemEJB;
+    private ItemService itemService;
 
     private Book book = new Book();
     private List<Book> bookList = new ArrayList<>();
@@ -47,8 +47,8 @@ public class ItemController {
     @PostConstruct
     private void initList() {
         logger.fine("ItemController.initList()");
-        bookList = itemEJB.findAllBooks();
-        cdList = itemEJB.findAllCDs();
+        bookList = itemService.findAllBooks();
+        cdList = itemService.findAllCDs();
     }
 
     // ======================================
@@ -58,16 +58,16 @@ public class ItemController {
     public String doCreateBook() {
         logger.fine("ItemController.doCreateBook():" + book);
         book.setTags(transformToList(tags));
-        itemEJB.createBook(book);
-        bookList = itemEJB.findAllBooks();
+        itemService.createBook(book);
+        bookList = itemService.findAllBooks();
         book = new Book();
         return "newBook.xhtml";
     }
 
     public String doCreateCD() {
         logger.fine("ItemController.doCreateCD():" + cd);
-        itemEJB.createCD(cd);
-        cdList = itemEJB.findAllCDs();
+        itemService.createCD(cd);
+        cdList = itemService.findAllCDs();
         cd = new CD();
         return "newCD.xhtml";
     }

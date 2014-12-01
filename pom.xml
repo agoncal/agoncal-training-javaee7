@@ -8,6 +8,7 @@
     <name>00 - Parent of Java EE 7 Training</name>
 
     <modules>
+        <module>01-CDI</module>
         <module>02-JPA</module>
         <module>03-JPA</module>
         <module>04-JPA</module>
@@ -32,6 +33,9 @@
         <!-- UI -->
         <version.primefaces>5.1</version.primefaces>
         <!-- Test -->
+        <version.deltaspike>1.1.0</version.deltaspike>
+        <version.weld>2.2.0.Final</version.weld>
+        <version.cdi>1.1</version.cdi>
         <version.junit>4.11</version.junit>
         <!-- Plugins -->
         <version.maven.war.plugin>2.5</version.maven.war.plugin>
@@ -42,17 +46,55 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 7...-->
+            <!-- Java EE -->
             <dependency>
                 <groupId>org.glassfish.main.extras</groupId>
                 <artifactId>glassfish-embedded-all</artifactId>
                 <version>${version.glassfish}</version>
+                <scope>provided</scope>
             </dependency>
-            <!-- Test -->
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>${version.cdi}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se</artifactId>
+                <version>${version.weld}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- UI -->
             <dependency>
                 <groupId>org.primefaces</groupId>
                 <artifactId>primefaces</artifactId>
                 <version>${version.primefaces}</version>
+            </dependency>
+            <!-- DeltaSpike -->
+            <dependency>
+                <groupId>org.apache.deltaspike.core</groupId>
+                <artifactId>deltaspike-core-impl</artifactId>
+                <version>${version.deltaspike}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.deltaspike.cdictrl</groupId>
+                <artifactId>deltaspike-cdictrl-api</artifactId>
+                <version>${version.deltaspike}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.deltaspike.cdictrl</groupId>
+                <artifactId>deltaspike-cdictrl-weld</artifactId>
+                <version>${version.deltaspike}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.deltaspike.core</groupId>
+                <artifactId>deltaspike-core-api</artifactId>
+                <version>${version.deltaspike}</version>
+                <scope>test</scope>
             </dependency>
             <!-- Test -->
             <dependency>
@@ -63,17 +105,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <defaultGoal>test</defaultGoal>

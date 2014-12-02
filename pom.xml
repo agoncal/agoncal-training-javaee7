@@ -33,13 +33,14 @@
         <!-- UI -->
         <version.primefaces>5.1</version.primefaces>
         <!-- Test -->
-        <version.deltaspike>1.1.0</version.deltaspike>
+        <version.deltaspike>1.0.1</version.deltaspike>
         <version.weld>2.2.0.Final</version.weld>
         <version.cdi>1.1</version.cdi>
         <version.junit>4.11</version.junit>
         <!-- Plugins -->
         <version.maven.war.plugin>2.5</version.maven.war.plugin>
         <version.maven.compiler.plugin>3.2</version.maven.compiler.plugin>
+        <version.maven.exec.plugin>1.3.2</version.maven.exec.plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -57,13 +58,11 @@
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
                 <version>${version.cdi}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.weld.se</groupId>
                 <artifactId>weld-se</artifactId>
                 <version>${version.weld}</version>
-                <scope>provided</scope>
             </dependency>
             <!-- UI -->
             <dependency>
@@ -76,25 +75,21 @@
                 <groupId>org.apache.deltaspike.core</groupId>
                 <artifactId>deltaspike-core-impl</artifactId>
                 <version>${version.deltaspike}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.deltaspike.cdictrl</groupId>
                 <artifactId>deltaspike-cdictrl-api</artifactId>
                 <version>${version.deltaspike}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.deltaspike.cdictrl</groupId>
                 <artifactId>deltaspike-cdictrl-weld</artifactId>
                 <version>${version.deltaspike}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.deltaspike.core</groupId>
                 <artifactId>deltaspike-core-api</artifactId>
                 <version>${version.deltaspike}</version>
-                <scope>test</scope>
             </dependency>
             <!-- Test -->
             <dependency>
@@ -127,6 +122,18 @@
                     <configuration>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${version.maven.exec.plugin}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>java</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

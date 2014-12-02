@@ -45,4 +45,18 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <commandlineArgs>-Duser.language=en -Duser.country=EN</commandlineArgs>
+                    <mainClass>org.agoncal.training.javaee.MainCDI</mainClass>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

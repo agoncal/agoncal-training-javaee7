@@ -14,54 +14,55 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
  *         http://www.antoniogoncalves.org
  *         --
  */
 public class ItemServiceTest {
 
-  // ======================================
-  // =             Attributes             =
-  // ======================================
+    // ======================================
+    // =             Attributes             =
+    // ======================================
 
-  private CdiContainer cdiContainer;
-  private ItemService itemService;
+    private CdiContainer cdiContainer;
+    private ItemService itemService;
 
-  // ======================================
-  // =          Lifecycle Methods         =
-  // ======================================
+    // ======================================
+    // =          Lifecycle Methods         =
+    // ======================================
 
-  @Before
-  public void initBeanManager() {
-    // this will give you a CdiContainer for Weld or OWB, depending on the jar you added
-    cdiContainer = CdiContainerLoader.getCdiContainer();
+    @Before
+    public void initBeanManager() {
+        // this will give you a CdiContainer for Weld or OWB, depending on the jar you added
+        cdiContainer = CdiContainerLoader.getCdiContainer();
 
-    // now we gonna boot the CDI container. This will trigger the classpath scan, etc
-    cdiContainer.boot();
+        // now we gonna boot the CDI container. This will trigger the classpath scan, etc
+        cdiContainer.boot();
 
-    BeanManager beanManager = cdiContainer.getBeanManager();
+        BeanManager beanManager = cdiContainer.getBeanManager();
 
-    Set<Bean<?>> beans = beanManager.getBeans(ItemService.class);
-    Bean<?> bean = beanManager.resolve(beans);
+        Set<Bean<?>> beans = beanManager.getBeans(ItemService.class);
+        Bean<?> bean = beanManager.resolve(beans);
 
-    itemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
-  }
+        itemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
+    }
 
-  @After
-  public void closeBeanManager() {
-    cdiContainer.shutdown();
-  }
+    @After
+    public void closeBeanManager() {
+        cdiContainer.shutdown();
+    }
 
-  // ======================================
-  // =              Methods               =
-  // ======================================
+    // ======================================
+    // =              Methods               =
+    // ======================================
 
-  @Test
-  public void shouldCreateABook() {
+    @Test
+    public void shouldCreateABook() {
 
-    // Creates a Book
-    String number = itemService.createBook();
+        // Creates a Book
+        String number = itemService.createBook();
 
-    // Checks the ISBN number has been generated
-    assertTrue(number.startsWith("13-84356-"));
-  }
+        // Checks the ISBN number has been generated
+        assertTrue(number.startsWith("13-84356-"));
+    }
 }

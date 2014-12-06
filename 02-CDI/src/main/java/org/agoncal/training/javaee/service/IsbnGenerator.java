@@ -1,9 +1,9 @@
 package org.agoncal.training.javaee.service;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.util.Random;
 
 /**
@@ -21,7 +21,8 @@ public class IsbnGenerator implements NumberGenerator {
 
     private int postfix;
 
-    private static final Logger logger = LogManager.getLogger(IsbnGenerator.class.getName());
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =

@@ -1,6 +1,6 @@
 package org.agoncal.training.javaee.service;
 
-import org.apache.logging.log4j.LogManager;
+import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
@@ -11,6 +11,7 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Loggable
 public class ItemService {
 
     // ======================================
@@ -21,7 +22,8 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    private static final Logger logger = LogManager.getLogger(ItemService.class.getName());
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Business methods          =

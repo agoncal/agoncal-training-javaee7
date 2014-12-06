@@ -9,6 +9,7 @@
 
     <modules>
         <module>01-CDI</module>
+        <module>02-CDI</module>
         <module>02-JPA</module>
         <module>03-JPA</module>
         <module>04-JPA</module>
@@ -28,14 +29,12 @@
     </modules>
 
     <properties>
-        <!-- Java EE -->
         <version.glassfish>4.1</version.glassfish>
-        <!-- UI -->
         <version.primefaces>5.1</version.primefaces>
-        <!-- Test -->
         <version.deltaspike>1.0.1</version.deltaspike>
         <version.weld>2.2.0.Final</version.weld>
         <version.cdi>1.1</version.cdi>
+        <version.log4j>2.1</version.log4j>
         <version.junit>4.11</version.junit>
         <!-- Plugins -->
         <version.maven.war.plugin>2.5</version.maven.war.plugin>
@@ -90,6 +89,17 @@
                 <groupId>org.apache.deltaspike.core</groupId>
                 <artifactId>deltaspike-core-api</artifactId>
                 <version>${version.deltaspike}</version>
+            </dependency>
+            <!-- Others -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${version.log4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${version.log4j}</version>
             </dependency>
             <!-- Test -->
             <dependency>

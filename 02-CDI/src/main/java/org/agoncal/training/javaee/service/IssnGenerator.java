@@ -1,9 +1,9 @@
 package org.agoncal.training.javaee.service;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.util.Random;
 
 /**
@@ -12,8 +12,8 @@ import java.util.Random;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@ThirteenDigits
-public class IsbnGenerator implements NumberGenerator {
+@EightDigits
+public class IssnGenerator implements NumberGenerator {
 
     // ======================================
     // =             Attributes             =
@@ -21,7 +21,8 @@ public class IsbnGenerator implements NumberGenerator {
 
     private int postfix;
 
-    private static final Logger logger = LogManager.getLogger(IsbnGenerator.class.getName());
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =
@@ -38,8 +39,8 @@ public class IsbnGenerator implements NumberGenerator {
     // ======================================
 
     public String generateNumber() {
-        String number = "13-84356-" + postfix++;
-        logger.debug("Generated Isbn Number: " + number);
+        String number = "8-" + postfix++;
+        logger.debug("Generated Issn Number: " + number);
         return number;
     }
 

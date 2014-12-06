@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.agoncal.training.javaee7</groupId>
-    <artifactId>01-CDI</artifactId>
+    <artifactId>02-CDI</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>01 - CDI</name>
+    <name>02 - CDI</name>
 
     <parent>
         <groupId>org.agoncal.training.javaee7</groupId>

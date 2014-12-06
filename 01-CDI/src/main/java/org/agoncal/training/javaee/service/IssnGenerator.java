@@ -1,8 +1,10 @@
 package org.agoncal.training.javaee.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.annotation.PostConstruct;
 import java.util.Random;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -19,7 +21,7 @@ public class IssnGenerator implements NumberGenerator {
 
     private int postfix;
 
-    private Logger logger = Logger.getLogger(IssnGenerator.class.getName());
+    private static final Logger logger = LogManager.getLogger(IssnGenerator.class.getName());
 
     // ======================================
     // =          Lifecycle methods         =
@@ -28,7 +30,7 @@ public class IssnGenerator implements NumberGenerator {
     @PostConstruct
     private void init() {
         postfix = Math.abs(new Random().nextInt());
-        logger.fine("Postfix: " + postfix);
+        logger.debug("Postfix: " + postfix);
     }
 
     // ======================================
@@ -37,7 +39,7 @@ public class IssnGenerator implements NumberGenerator {
 
     public String generateNumber() {
         String number = "8-" + postfix++;
-        logger.fine("Generated Issn Number: " + number);
+        logger.debug("Generated Issn Number: " + number);
         return number;
     }
 

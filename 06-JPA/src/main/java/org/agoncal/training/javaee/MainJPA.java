@@ -1,9 +1,6 @@
 package org.agoncal.training.javaee;
 
-import org.agoncal.training.javaee.model.Book;
-import org.agoncal.training.javaee.model.CD;
-import org.agoncal.training.javaee.model.Chapter;
-import org.agoncal.training.javaee.model.Language;
+import org.agoncal.training.javaee.model.*;
 import org.agoncal.training.javaee.service.ItemService;
 import org.agoncal.training.javaee.service.MockGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -95,6 +92,13 @@ public class MainJPA {
 
         // Creates a CD
         CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
+        // Tracks
+        Track track1 = new Track("Sgt Pepper Lonely Heart Club Ban", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
+        Track track2 = new Track("Fixing a Hole", 3.34f, "Beleive it or not, this song is about drugs");
+        List<Track> tracks = new ArrayList<>();
+        tracks.add(track1);
+        tracks.add(track2);
+        cd.setTracks(tracks);
 
         // Persists the cd
         tx.begin();

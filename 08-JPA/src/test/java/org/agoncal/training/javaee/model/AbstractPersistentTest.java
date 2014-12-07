@@ -10,7 +10,8 @@ import javax.persistence.Persistence;
 
 /**
  * @author Antonio Goncalves
- *         Training - Beginning with The Java EE 7 Platform
+ *         APress Book - Beginning Java EE 6 with Glassfish
+ *         http://www.apress.com/
  *         http://www.antoniogoncalves.org
  *         --
  */

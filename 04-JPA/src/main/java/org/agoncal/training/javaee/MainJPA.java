@@ -39,6 +39,18 @@ public class MainJPA {
 
         // Creates a book
         Book book = new Book(4044L, "H2G2", 12.5F, "Best IT Scifi Book", 247, true, Language.ENGLISH);
+        // Tags
+        List<String> tags = new ArrayList<>();
+        tags.add("scifi");
+        tags.add("french");
+        book.setTags(tags);
+        // Chapters
+        Chapter chapter1 = new Chapter("Arriving on earth", "blah blah blah blah blah");
+        Chapter chapter2 = new Chapter("Restaurant of the universe", "Forty two");
+        List<Chapter> chapters = new ArrayList<>();
+        chapters.add(chapter1);
+        chapters.add(chapter2);
+        book.setChapters(chapters);
 
         // Persists the book
         tx.begin();

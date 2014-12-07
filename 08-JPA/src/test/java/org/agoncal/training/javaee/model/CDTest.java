@@ -1,5 +1,7 @@
 package org.agoncal.training.javaee.model;
 
+import org.agoncal.training.javaee.model.CD;
+import org.agoncal.training.javaee.model.Track;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,9 +12,6 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
- *         Training - Beginning with The Java EE 7 Platform
- *         http://www.antoniogoncalves.org
- *         --
  */
 public class CDTest extends AbstractPersistentTest {
 
@@ -34,7 +33,7 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals("St Pepper", cd.getTitle());
+        assertEquals(cd.getTitle(), "St Pepper");
 
         // Updates the CD
         tx.begin();
@@ -43,7 +42,7 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals("Help", cd.getTitle());
+        assertEquals(cd.getTitle(), "Help");
 
         // Deletes the CD
         tx.begin();
@@ -80,6 +79,7 @@ public class CDTest extends AbstractPersistentTest {
         assertEquals("Should have no CD", 0, em.createNamedQuery("findAllCDs", CD.class).getResultList().size());
     }
 
+    @SuppressWarnings("Convert2Diamond")
     @Test
     public void shouldCreateACDWithTracks() {
 
@@ -87,9 +87,9 @@ public class CDTest extends AbstractPersistentTest {
         CD cd = new CD("St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
 
         // Adds tracks
-        Track track1 = new Track("Sgt Pepper Lonely Heart Club Band", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
+        Track track1 = new Track("Sgt Pepper Lonely Heart Club Ban", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
         Track track2 = new Track("Fixing a Hole", 3.34f, "Beleive it or not, this song is about drugs");
-        List<Track> tracks = new ArrayList<>();
+        List<Track> tracks = new ArrayList<Track>();
         tracks.add(track1);
         tracks.add(track2);
         cd.setTracks(tracks);
@@ -102,14 +102,14 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals("St Pepper", cd.getTitle());
+        assertEquals(cd.getTitle(), "St Pepper");
 
         // Finds the track by primary key
         track1 = em.find(Track.class, track1.getId());
-        assertEquals("Sgt Pepper Lonely Heart Club Band", track1.getTitle());
+        assertEquals(track1.getTitle(), "Sgt Pepper Lonely Heart Club Ban");
 
         // Checks the number of tracks
-        assertEquals(2, cd.getTracks().size());
+        assertEquals(cd.getTracks().size(), 2);
 
         // Deletes the CD
         tx.begin();

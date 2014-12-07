@@ -18,6 +18,7 @@ public class Item {
     // ======================================
     // =             Attributes             =
     // ======================================
+
     @Id
     @GeneratedValue
     protected Long id;
@@ -35,6 +36,13 @@ public class Item {
     }
 
     public Item(String title, Float price, String description) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Item(Long id, String title, Float price, String description) {
+        this.id = id;
         this.title = title;
         this.price = price;
         this.description = description;

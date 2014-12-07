@@ -30,7 +30,7 @@ public class Book {
     private Boolean illustrations;
 
     // annotation can be omitted thanks to programming by exception
-    @Enumerated
+    @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
     // annotations can be omitted thanks to programming by exception

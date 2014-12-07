@@ -27,9 +27,9 @@ public class ItemService {
     // =          Business methods          =
     // ======================================
 
-    public String createBook() {
+    public String generateNumber() {
         String number = numberGenerator.generateNumber();
-        logger.debug("Book created with number " + number);
+        logger.debug("Number generated" + number);
         return number;
     }
 }

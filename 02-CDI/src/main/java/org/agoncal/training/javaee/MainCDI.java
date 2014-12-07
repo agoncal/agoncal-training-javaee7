@@ -35,8 +35,8 @@ public class MainCDI {
 
         ItemService ItemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
 
-        logger.info("# " + ItemService.createBook());
-        logger.info("# " + ItemService.createBook());
+        logger.info("# " + ItemService.generateNumber());
+        logger.info("# " + ItemService.generateNumber());
 
         // finally we gonna stop the container
         cdiContainer.shutdown();

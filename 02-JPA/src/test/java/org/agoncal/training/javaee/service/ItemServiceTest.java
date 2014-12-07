@@ -1,6 +1,5 @@
 package org.agoncal.training.javaee.service;
 
-import org.agoncal.training.javaee.model.Book;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.junit.After;
@@ -58,12 +57,12 @@ public class ItemServiceTest {
     // ======================================
 
     @Test
-    public void shouldCreateABook() {
+    public void shouldGenerateANumber() {
 
         // Creates a Book
-        Book book = itemService.createBook(new Book());
+        String number = itemService.generateNumber();
 
         // Checks the ISBN number has been generated
-        assertTrue(book.getIsbn().startsWith("13-84356-"));
+        assertTrue(number.startsWith("13-84356-"));
     }
 }

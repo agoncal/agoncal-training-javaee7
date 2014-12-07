@@ -45,11 +45,20 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Float price, String description, String isbn, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
+    public Book(String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
         this.title = title;
         this.price = price;
         this.description = description;
-        this.isbn = isbn;
+        this.nbOfPage = nbOfPage;
+        this.illustrations = illustrations;
+        this.contentLanguage = contentLanguage;
+    }
+
+    public Book(Long id, String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
         this.nbOfPage = nbOfPage;
         this.illustrations = illustrations;
         this.contentLanguage = contentLanguage;

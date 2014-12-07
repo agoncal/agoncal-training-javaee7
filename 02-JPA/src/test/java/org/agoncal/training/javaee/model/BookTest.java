@@ -1,6 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Book;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +55,7 @@ public class BookTest {
     public void shouldCreateABook() {
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false);
 
         // Persists the book
         tx.begin();

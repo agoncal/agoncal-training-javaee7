@@ -1,6 +1,5 @@
 package org.agoncal.training.javaee;
 
-import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.service.ItemService;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
@@ -36,8 +35,8 @@ public class MainCDI {
 
         ItemService ItemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
 
-        logger.info("# " + ItemService.createBook(new Book()));
-        logger.info("# " + ItemService.createBook(new Book()));
+        logger.info("# " + ItemService.generateNumber());
+        logger.info("# " + ItemService.generateNumber());
 
         // finally we gonna stop the container
         cdiContainer.shutdown();

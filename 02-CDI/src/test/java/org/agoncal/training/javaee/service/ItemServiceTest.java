@@ -57,10 +57,10 @@ public class ItemServiceTest {
     // ======================================
 
     @Test
-    public void shouldCreateABook() {
+    public void shouldGenerateANumber() {
 
         // Creates a Book
-        String number = itemService.createBook();
+        String number = itemService.generateNumber();
 
         // Checks the ISBN number has been generated
         assertTrue(number.startsWith("13-84356-"));

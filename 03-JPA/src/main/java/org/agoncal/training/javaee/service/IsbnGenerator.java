@@ -1,9 +1,10 @@
 package org.agoncal.training.javaee.service;
 
-import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Random;
 
 /**
  * @author Antonio Goncalves
@@ -11,27 +12,36 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Loggable
-public class ItemService {
+@ThirteenDigits
+public class IsbnGenerator implements NumberGenerator {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    @Inject
-    @ThirteenDigits
-    private NumberGenerator numberGenerator;
+    private int postfix;
 
     @Inject
     private Logger logger;
+
+    // ======================================
+    // =          Lifecycle methods         =
+    // ======================================
+
+    @PostConstruct
+    private void init() {
+        postfix = Math.abs(new Random().nextInt());
+        logger.debug("Postfix: " + postfix);
+    }
 
     // ======================================
     // =          Business methods          =
     // ======================================
 
     public String generateNumber() {
-        String number = numberGenerator.generateNumber();
-        logger.debug("Number generated" + number);
+        String number = "13-84356-" + postfix++;
+        logger.debug("Generated Isbn Number: " + number);
         return number;
     }
+
 }

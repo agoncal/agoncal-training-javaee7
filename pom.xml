@@ -67,7 +67,7 @@
             </dependency>
             <dependency>
                 <groupId>org.eclipse.persistence</groupId>
-                <artifactId>eclipselink</artifactId>
+                <artifactId>org.eclipse.persistence.jpa</artifactId>
                 <version>${version.eclipselink}</version>
             </dependency>
             <!-- DB -->

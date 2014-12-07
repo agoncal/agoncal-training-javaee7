@@ -1,7 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Book;
-import org.agoncal.training.javaee.model.Language;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +16,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class BookTest {
 
@@ -56,7 +57,7 @@ public class BookTest {
     public void shouldCreateABook() {
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -90,7 +91,7 @@ public class BookTest {
     public void shouldCreateABookWithTags() {
 
         // Creates a book with tags
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
         tags.add("french");
@@ -122,7 +123,7 @@ public class BookTest {
     public void shouldNotCreateABookWithANullTitle() {
 
         // Creates a book with null title
-        Book book = new Book(null, 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book(null, 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -134,7 +135,7 @@ public class BookTest {
     public void shouldUpdateTheBookLanguage() {
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();

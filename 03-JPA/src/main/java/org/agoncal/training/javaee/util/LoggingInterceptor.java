@@ -1,9 +1,11 @@
-package org.agoncal.training.javaee.service;
+package org.agoncal.training.javaee.util;
 
-import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.Interceptor;
+import javax.interceptor.InvocationContext;
 
 /**
  * @author Antonio Goncalves
@@ -11,16 +13,13 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Interceptor
 @Loggable
-public class ItemService {
+public class LoggingInterceptor {
 
     // ======================================
     // =             Attributes             =
     // ======================================
-
-    @Inject
-    @ThirteenDigits
-    private NumberGenerator numberGenerator;
 
     @Inject
     private Logger logger;
@@ -29,9 +28,14 @@ public class ItemService {
     // =          Business methods          =
     // ======================================
 
-    public String generateNumber() {
-        String number = numberGenerator.generateNumber();
-        logger.debug("Number generated" + number);
-        return number;
+    @AroundInvoke
+    public Object logMethod(InvocationContext ic) throws Exception {
+        logger.debug(">" + ic.getTarget().getClass().getName(), ic.getMethod().getName());
+        try {
+            return ic.proceed();
+        } finally {
+            logger.debug("<" + ic.getTarget().getClass().getName());
+        }
     }
+
 }

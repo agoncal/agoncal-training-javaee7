@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee.service;
 
 import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
@@ -70,5 +71,18 @@ public class ItemService {
         if (book != null)
             book.setPrice(book.getPrice() + raise);
         return book;
+    }
+
+    public CD createCD(CD cd) {
+        em.persist(cd);
+        return cd;
+    }
+
+    public CD findCD(Long id) {
+        return em.find(CD.class, id);
+    }
+
+    public void removeCD(CD cd) {
+        em.remove(em.merge(cd));
     }
 }

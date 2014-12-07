@@ -31,7 +31,7 @@ public class ItemTest extends AbstractPersistentTest {
 
         // Finds the item by primary key
         item = em.find(Item.class, id);
-        assertEquals(item.getTitle(), "Pencil");
+        assertEquals("Pencil", item.getTitle());
 
         // Updates the item
         tx.begin();
@@ -40,7 +40,7 @@ public class ItemTest extends AbstractPersistentTest {
 
         // Finds the item by primary key
         item = em.find(Item.class, id);
-        assertEquals(item.getTitle(), "Red pen");
+        assertEquals("Red pen", item.getTitle());
 
         // Deletes the item
         tx.begin();

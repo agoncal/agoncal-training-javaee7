@@ -40,6 +40,13 @@ public class Item {
         this.description = description;
     }
 
+    public Item(Long id, String title, Float price, String description) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+    }
+
     // ======================================
     // =          Getters & Setters         =
     // ======================================

@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Chapter;
 import org.agoncal.training.javaee.model.Language;
 import org.agoncal.training.javaee.service.ItemService;
@@ -42,7 +43,6 @@ public class MainJPA {
 
         // Creates a book
         Book book = new Book(4044L, "H2G2", 12.5F, "Best IT Scifi Book", 247, true, Language.ENGLISH);
-        //Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
         // Tags
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
@@ -72,6 +72,12 @@ public class MainJPA {
         tx.commit();
         logger.info("Book Updated   : " + book);
 
+        // Updates the price
+        tx.begin();
+        book = service.raiseBookPrice(4044L, 100.50F);
+        tx.commit();
+        logger.info("Price Raised   : " + book);
+
         // Finds the book by primary key
         book = service.findBook(4044L);
         logger.info("Book Found     : " + book);
@@ -85,6 +91,40 @@ public class MainJPA {
         // Finds the book by primary key
         book = service.findBook(4044L);
         logger.info("Book Not Found : " + book);
+
+
+        // Creates a CD
+        CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
+
+        // Persists the cd
+        tx.begin();
+        cd = service.createCD(cd);
+        tx.commit();
+        logger.info("CD Persisted : " + cd);
+
+        // Finds the cd by primary key
+        cd = service.findCD(2022L);
+        logger.info("CD Found     : " + cd);
+
+        // Updates the cd
+        tx.begin();
+        cd.setTitle("Help");
+        tx.commit();
+        logger.info("CD Updated   : " + cd);
+
+        // Finds the cd by primary key
+        cd = service.findCD(2022L);
+        logger.info("CD Found     : " + cd);
+
+        // Deletes the cd
+        tx.begin();
+        service.removeCD(cd);
+        tx.commit();
+        logger.info("CD Removed");
+
+        // Finds the cd by primary key
+        cd = service.findCD(2022L);
+        logger.info("CD Not Found : " + cd);
 
         em.close();
         emf.close();

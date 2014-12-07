@@ -49,8 +49,7 @@ public class Book extends Item {
     }
 
     public Book(Long id, String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
-        super(title, price, description);
-        this.id = id;
+        super(id, title, price, description);
         this.nbOfPage = nbOfPage;
         this.illustrations = illustrations;
         this.contentLanguage = contentLanguage;

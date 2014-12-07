@@ -56,6 +56,12 @@ public class MainJPA {
         tx.commit();
         logger.info("Book Updated   : " + book);
 
+        // Updates the price
+        tx.begin();
+        book = service.raiseBookPrice(4044L, 100.50F);
+        tx.commit();
+        logger.info("Price Raised   : " + book);
+
         // Finds the book by primary key
         book = service.findBook(4044L);
         logger.info("Book Found     : " + book);

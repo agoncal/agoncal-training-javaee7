@@ -34,7 +34,7 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals(cd.getTitle(), "St Pepper");
+        assertEquals("St Pepper", cd.getTitle());
 
         // Updates the CD
         tx.begin();
@@ -43,7 +43,7 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals(cd.getTitle(), "Help");
+        assertEquals("Help", cd.getTitle());
 
         // Deletes the CD
         tx.begin();
@@ -54,7 +54,6 @@ public class CDTest extends AbstractPersistentTest {
         assertNull("CD should has been deleted", em.find(CD.class, id));
     }
 
-    @SuppressWarnings("Convert2Diamond")
     @Test
     public void shouldCreateACDWithTracks() {
 
@@ -62,9 +61,9 @@ public class CDTest extends AbstractPersistentTest {
         CD cd = new CD("St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
 
         // Adds tracks
-        Track track1 = new Track("Sgt Pepper Lonely Heart Club Ban", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
+        Track track1 = new Track("Sgt Pepper Lonely Heart Club Band", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
         Track track2 = new Track("Fixing a Hole", 3.34f, "Beleive it or not, this song is about drugs");
-        List<Track> tracks = new ArrayList<Track>();
+        List<Track> tracks = new ArrayList<>();
         tracks.add(track1);
         tracks.add(track2);
         cd.setTracks(tracks);
@@ -77,14 +76,14 @@ public class CDTest extends AbstractPersistentTest {
 
         // Finds the CD by primary key
         cd = em.find(CD.class, id);
-        assertEquals(cd.getTitle(), "St Pepper");
+        assertEquals("St Pepper", cd.getTitle());
 
         // Finds the track by primary key
         track1 = em.find(Track.class, track1.getId());
-        assertEquals(track1.getTitle(), "Sgt Pepper Lonely Heart Club Ban");
+        assertEquals("Sgt Pepper Lonely Heart Club Band", track1.getTitle());
 
         // Checks the number of tracks
-        assertEquals(cd.getTracks().size(), 2);
+        assertEquals(2, cd.getTracks().size());
 
         // Deletes the CD
         tx.begin();

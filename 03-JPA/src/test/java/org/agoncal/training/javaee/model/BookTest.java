@@ -67,7 +67,7 @@ public class BookTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "H2G2");
+        assertEquals("H2G2", book.getTitle());
 
         // Updates the book
         tx.begin();
@@ -76,7 +76,7 @@ public class BookTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "Hitchhiker's Guide");
+        assertEquals("Hitchhiker's Guide", book.getTitle());
 
         // Deletes the book
         tx.begin();
@@ -105,10 +105,10 @@ public class BookTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "H2G2");
+        assertEquals("H2G2", book.getTitle());
 
         // Checks the number of tags
-        assertEquals(book.getTags().size(), 2);
+        assertEquals(2, book.getTags().size());
 
         // Deletes the book
         tx.begin();
@@ -145,7 +145,7 @@ public class BookTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getContentLanguage(), Language.ENGLISH);
+        assertEquals(Language.ENGLISH, book.getContentLanguage());
 
         // Updates the book
         tx.begin();
@@ -154,7 +154,7 @@ public class BookTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getContentLanguage(), Language.FRENCH);
+        assertEquals(Language.FRENCH, book.getContentLanguage());
 
         // Deletes the book
         tx.begin();

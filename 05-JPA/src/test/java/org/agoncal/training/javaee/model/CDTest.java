@@ -1,7 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.CD;
-import org.agoncal.training.javaee.model.Track;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +10,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class CDTest extends AbstractPersistentTest {
 

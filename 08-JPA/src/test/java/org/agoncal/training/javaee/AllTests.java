@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.*;
+import org.agoncal.training.javaee.service.ItemServiceTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -10,7 +11,8 @@ import org.junit.runners.Suite;
         CDTest.class,
         ChapterTest.class,
         ItemTest.class,
-        TrackTest.class
+        TrackTest.class,
+        ItemServiceTest.class
 })
 public class AllTests {
 }

@@ -1,8 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Book;
-import org.agoncal.training.javaee.model.Chapter;
-import org.agoncal.training.javaee.model.Language;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,6 +10,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class BookTest extends AbstractPersistentTest {
 
@@ -24,7 +24,7 @@ public class BookTest extends AbstractPersistentTest {
     public void shouldCreateABook() {
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -34,7 +34,7 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "H2G2");
+        assertEquals("H2G2", book.getTitle());
 
         // Updates the book
         tx.begin();
@@ -43,7 +43,7 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "Hitchhiker's Guide");
+        assertEquals("Hitchhiker's Guide", book.getTitle());
 
         // Deletes the book
         tx.begin();
@@ -61,7 +61,7 @@ public class BookTest extends AbstractPersistentTest {
         assertEquals("Should have no book", 0, em.createNamedQuery("findAllBooks", Book.class).getResultList().size());
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -84,7 +84,7 @@ public class BookTest extends AbstractPersistentTest {
     public void shouldCreateABookWithTags() {
 
         // Creates a book with tags
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
         tags.add("french");
@@ -98,10 +98,10 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "H2G2");
+        assertEquals("H2G2", book.getTitle());
 
         // Checks the number of tags
-        assertEquals(book.getTags().size(), 2);
+        assertEquals(2, book.getTags().size());
 
         // Deletes the book
         tx.begin();
@@ -116,7 +116,7 @@ public class BookTest extends AbstractPersistentTest {
     public void shouldCreateABookWithChapters() {
 
         // Creates a book with tags
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
         tags.add("french");
@@ -138,17 +138,17 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getTitle(), "H2G2");
+        assertEquals("H2G2", book.getTitle());
 
         // Checks the number of tags
-        assertEquals(book.getTags().size(), 2);
+        assertEquals(2, book.getTags().size());
 
         // Finds the chapter by primary key
         chapter1 = em.find(Chapter.class, chapter1.getId());
-        assertEquals(chapter1.getTitle(), "Arriving on earth");
+        assertEquals("Arriving on earth", chapter1.getTitle());
 
         // Checks the number of chapters
-        assertEquals(book.getChapters().size(), 2);
+        assertEquals(2, book.getChapters().size());
 
         // Deletes the book
         tx.begin();
@@ -164,7 +164,7 @@ public class BookTest extends AbstractPersistentTest {
     public void shouldNotCreateABookWithANullTitle() {
 
         // Creates a book with null title
-        Book book = new Book(null, 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book(null, 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -176,7 +176,7 @@ public class BookTest extends AbstractPersistentTest {
     public void shouldUpdateTheBookLanguage() {
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         tx.begin();
@@ -186,7 +186,7 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getContentLanguage(), Language.ENGLISH);
+        assertEquals(Language.ENGLISH, book.getContentLanguage());
 
         // Updates the book
         tx.begin();
@@ -195,7 +195,7 @@ public class BookTest extends AbstractPersistentTest {
 
         // Finds the book by primary key
         book = em.find(Book.class, id);
-        assertEquals(book.getContentLanguage(), Language.FRENCH);
+        assertEquals(Language.FRENCH, book.getContentLanguage());
 
         // Deletes the book
         tx.begin();

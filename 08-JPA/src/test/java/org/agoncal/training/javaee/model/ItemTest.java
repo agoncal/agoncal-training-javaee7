@@ -1,6 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Item;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,6 +7,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class ItemTest extends AbstractPersistentTest {
 
@@ -29,7 +31,7 @@ public class ItemTest extends AbstractPersistentTest {
 
         // Finds the item by primary key
         item = em.find(Item.class, id);
-        assertEquals(item.getTitle(), "Pencil");
+        assertEquals("Pencil", item.getTitle());
 
         // Updates the item
         tx.begin();
@@ -38,7 +40,7 @@ public class ItemTest extends AbstractPersistentTest {
 
         // Finds the item by primary key
         item = em.find(Item.class, id);
-        assertEquals(item.getTitle(), "Red pen");
+        assertEquals("Red pen", item.getTitle());
 
         // Deletes the item
         tx.begin();

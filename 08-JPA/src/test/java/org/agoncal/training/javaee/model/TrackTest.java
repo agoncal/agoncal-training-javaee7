@@ -1,7 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Chapter;
-import org.agoncal.training.javaee.model.Track;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -9,6 +7,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class TrackTest extends AbstractPersistentTest {
 
@@ -18,6 +19,8 @@ public class TrackTest extends AbstractPersistentTest {
 
     @Test
     public void shouldCreateATrack() {
+
+        // Creates a track
         Track track = new Track("Sgt Pepper Lonely Heart Club Ban", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
 
         // Creates a track
@@ -28,7 +31,7 @@ public class TrackTest extends AbstractPersistentTest {
 
         // Finds the track by primary key
         track = em.find(Track.class, id);
-        assertEquals(track.getTitle(), "Sgt Pepper Lonely Heart Club Ban");
+        assertEquals("Sgt Pepper Lonely Heart Club Ban", track.getTitle());
 
         // Updates the track
         tx.begin();
@@ -37,7 +40,7 @@ public class TrackTest extends AbstractPersistentTest {
 
         // Finds the chapter by primary key
         track = em.find(Track.class, id);
-        assertEquals(track.getTitle(), "Sgt Pepper Lonely Heart Club Band");
+        assertEquals("Sgt Pepper Lonely Heart Club Band", track.getTitle());
 
         // Deletes the chapter
         tx.begin();

@@ -1,6 +1,5 @@
 package org.agoncal.training.javaee.model;
 
-import org.agoncal.training.javaee.model.Chapter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,6 +7,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * @author Antonio Goncalves
+ *         Training - Beginning with The Java EE 7 Platform
+ *         http://www.antoniogoncalves.org
+ *         --
  */
 public class ChapterTest extends AbstractPersistentTest {
 
@@ -16,10 +18,12 @@ public class ChapterTest extends AbstractPersistentTest {
     // ======================================
 
     @Test
-    public void shouldCreateAnChapter() {
+    public void shouldCreateAChapter() {
+
+        // Creates a chapter
         Chapter chapter = new Chapter("Gone with the wind", "Scarlet jumps into the bed, crying.");
 
-        // Creates a book
+        // Creates a chapter
         tx.begin();
         em.persist(chapter);
         tx.commit();
@@ -27,7 +31,7 @@ public class ChapterTest extends AbstractPersistentTest {
 
         // Finds the chapter by primary key
         chapter = em.find(Chapter.class, id);
-        assertEquals(chapter.getTitle(), "Gone with the wind");
+        assertEquals("Gone with the wind", chapter.getTitle());
 
         // Updates the chapter
         tx.begin();
@@ -36,7 +40,7 @@ public class ChapterTest extends AbstractPersistentTest {
 
         // Finds the chapter by primary key
         chapter = em.find(Chapter.class, id);
-        assertEquals(chapter.getTitle(), "Just gone");
+        assertEquals("Just gone", chapter.getTitle());
 
         // Deletes the chapter
         tx.begin();

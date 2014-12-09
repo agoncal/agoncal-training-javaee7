@@ -10,7 +10,6 @@
     <modules>
         <module>01-CDI</module>
         <module>02-CDI</module>
-        <module>02-JPA</module>
         <module>03-JPA</module>
         <module>04-JPA</module>
         <module>05-JPA</module>
@@ -31,7 +30,7 @@
     <properties>
         <version.glassfish>4.1</version.glassfish>
         <version.primefaces>5.1</version.primefaces>
-        <version.deltaspike>1.0.1</version.deltaspike>
+        <version.deltaspike>1.2.0</version.deltaspike>
         <version.weld>2.2.0.Final</version.weld>
         <version.cdi>1.1</version.cdi>
         <version.eclipselink>2.5.2</version.eclipselink>
@@ -53,7 +52,6 @@
                 <groupId>org.glassfish.main.extras</groupId>
                 <artifactId>glassfish-embedded-all</artifactId>
                 <version>${version.glassfish}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.enterprise</groupId>

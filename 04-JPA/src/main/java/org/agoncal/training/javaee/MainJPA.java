@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.Chapter;
 import org.agoncal.training.javaee.model.Language;
 import org.agoncal.training.javaee.service.ItemService;
 import org.agoncal.training.javaee.service.MockGenerator;
@@ -12,6 +13,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves

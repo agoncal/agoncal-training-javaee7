@@ -26,6 +26,7 @@ public class ItemServiceTest {
     // ======================================
     // =             Attributes             =
     // ======================================
+
     private static EJBContainer ec;
     private static Context ctx;
 
@@ -34,7 +35,7 @@ public class ItemServiceTest {
     // ======================================
 
     @BeforeClass
-    public static void initContainer() {
+    public static void initEJBContainer() {
         Map<String, Object> properties = new HashMap<>();
         properties.put(EJBContainer.MODULES, new File[]{new File("target/classes"), new File("target/test-classes")});
         ec = EJBContainer.createEJBContainer(properties);
@@ -49,7 +50,7 @@ public class ItemServiceTest {
     }
 
     // ======================================
-    // =              Unit tests            =
+    // =             Unit tests             =
     // ======================================
 
     @Test
@@ -59,7 +60,7 @@ public class ItemServiceTest {
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists a book
         book = itemService.createBook(book);
@@ -86,7 +87,7 @@ public class ItemServiceTest {
         int initialNumberOfBooks = itemService.findAllBooks().size();
 
         // Creates a book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         book = itemService.createBook(book);
@@ -109,7 +110,7 @@ public class ItemServiceTest {
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book with tags
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
         tags.add("french");
@@ -140,7 +141,7 @@ public class ItemServiceTest {
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book with tags
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
         tags.add("french");
@@ -182,7 +183,7 @@ public class ItemServiceTest {
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book with null title
-        Book book = new Book(null, 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book(null, 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
         // Persists the book
         itemService.createBook(book);

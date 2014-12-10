@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNull;
 public class ChapterTest extends AbstractPersistentTest {
 
     // ======================================
-    // =              Methods               =
+    // =             Unit tests             =
     // ======================================
 
     @Test

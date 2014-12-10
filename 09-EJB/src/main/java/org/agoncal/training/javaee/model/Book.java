@@ -25,7 +25,7 @@ public class Book extends Item {
     private Boolean illustrations;
 
     // annotation can be omitted thanks to programming by exception
-    @Enumerated
+    @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
     // annotations can be omitted thanks to programming by exception
@@ -43,9 +43,15 @@ public class Book extends Item {
     public Book() {
     }
 
-    public Book(String title, Float price, String description, String isbn, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
+    public Book(String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
         super(title, price, description);
-        this.isbn = isbn;
+        this.nbOfPage = nbOfPage;
+        this.illustrations = illustrations;
+        this.contentLanguage = contentLanguage;
+    }
+
+    public Book(Long id, String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
+        super(id, title, price, description);
         this.nbOfPage = nbOfPage;
         this.illustrations = illustrations;
         this.contentLanguage = contentLanguage;

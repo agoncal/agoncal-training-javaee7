@@ -2,6 +2,8 @@ package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.*;
 import org.agoncal.training.javaee.service.ItemService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
@@ -10,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -18,9 +19,9 @@ import java.util.logging.Logger;
  *         http://www.antoniogoncalves.org
  *         --
  */
-public class Main {
+public class MainEJB {
 
-    private static Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    private static final Logger logger = LogManager.getLogger(MainEJB.class);
 
     public static void main(String[] args) throws Exception {
 
@@ -34,7 +35,7 @@ public class Main {
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates an instance of book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", "1234-5678-5678", 247, false, Language.ENGLISH);
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
         // Tags
         List<String> tags = new ArrayList<>();
         tags.add("scifi");

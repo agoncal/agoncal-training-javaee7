@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNull;
 public class CDTest extends AbstractPersistentTest {
 
     // ======================================
-    // =              Methods               =
+    // =             Unit tests             =
     // ======================================
 
     @Test

@@ -41,7 +41,6 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
                     <commandlineArgs>-Duser.language=en -Duser.country=EN</commandlineArgs>
-                    <mainClass>org.agoncal.training.javaee.MainCDI</mainClass>
                     <!--<mainClass>org.agoncal.training.javaee.MainJPA</mainClass>-->
                     <!--<mainClass>org.agoncal.training.javaee.MainJPASchemaGen</mainClass>-->
                     <mainClass>org.agoncal.training.javaee.MainEJB</mainClass>

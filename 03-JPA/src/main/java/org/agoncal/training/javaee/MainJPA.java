@@ -21,6 +21,10 @@ import java.sql.SQLException;
  */
 public class MainJPA {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     private static final Logger logger = LogManager.getLogger(MainJPA.class);
 
     private static String PERSISTENCE_UNIT_NAME = "trainingPU";
@@ -29,12 +33,18 @@ public class MainJPA {
     private static EntityManager em;
     private static EntityTransaction tx;
 
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
+        // Gets an Entity Manager
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
         tx = em.getTransaction();
 
+        // Creates an ItemService
         ItemService service = new ItemService(em, new MockGenerator());
 
         // Creates a book

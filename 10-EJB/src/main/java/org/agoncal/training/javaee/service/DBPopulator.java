@@ -3,12 +3,13 @@ package org.agoncal.training.javaee.service;
 import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import java.util.logging.Logger;
+import javax.inject.Inject;
 
 /**
  * @author Antonio Goncalves
@@ -24,10 +25,11 @@ public class DBPopulator {
     // =             Attributes             =
     // ======================================
 
-    @EJB
+    @Inject
     private ItemService itemService;
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =

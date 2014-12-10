@@ -59,7 +59,7 @@ public class ItemServiceTest {
     @Test
     public void shouldGenerateANumber() {
 
-        // Creates a Book
+        // Generates a number
         String number = itemService.generateNumber();
 
         // Checks the ISBN number has been generated

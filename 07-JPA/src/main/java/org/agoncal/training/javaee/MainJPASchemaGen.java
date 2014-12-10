@@ -13,9 +13,17 @@ import javax.persistence.Persistence;
  */
 public class MainJPASchemaGen {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     private static final Logger logger = LogManager.getLogger(MainJPASchemaGen.class);
 
     private static String PERSISTENCE_UNIT_NAME = "trainingPU";
+
+    // ======================================
+    // =          Business methods          =
+    // ======================================
 
     public static void main(String[] args) {
 

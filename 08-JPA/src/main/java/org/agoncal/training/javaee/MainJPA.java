@@ -19,6 +19,10 @@ import java.util.List;
  */
 public class MainJPA {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     private static final Logger logger = LogManager.getLogger(MainJPA.class);
 
     private static String PERSISTENCE_UNIT_NAME = "trainingPU";
@@ -27,12 +31,18 @@ public class MainJPA {
     private static EntityManager em;
     private static EntityTransaction tx;
 
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
+        // Gets an Entity Manager
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
         tx = em.getTransaction();
 
+        // Creates an ItemService
         ItemService service = new ItemService(em, new MockGenerator());
 
         // Creates a book
@@ -56,7 +66,6 @@ public class MainJPA {
         tx.commit();
         logger.info("Book Persisted : " + book);
 
-
         // Creates a CD
         CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
         // Tracks
@@ -72,7 +81,6 @@ public class MainJPA {
         cd = service.createCD(cd);
         tx.commit();
         logger.info("CD Persisted : " + cd);
-
 
         // Finds all the items
         logger.info("##### All items");

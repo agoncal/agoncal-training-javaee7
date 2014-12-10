@@ -1,8 +1,11 @@
-package org.agoncal.training.javaee.service;
+package org.agoncal.training.javaee.util;
 
+import org.apache.logging.log4j.Logger;
+
+import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
+import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -10,13 +13,16 @@ import java.util.logging.Logger;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Interceptor
+@Loggable
 public class LoggingInterceptor {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Business methods          =
@@ -24,11 +30,11 @@ public class LoggingInterceptor {
 
     @AroundInvoke
     public Object logMethod(InvocationContext ic) throws Exception {
-        logger.entering(ic.getTarget().getClass().getName(), ic.getMethod().getName());
+        logger.debug(">" + ic.getTarget().getClass().getName(), ic.getMethod().getName());
         try {
             return ic.proceed();
         } finally {
-            logger.exiting(ic.getTarget().getClass().getName(), ic.getMethod().getName());
+            logger.debug("<" + ic.getTarget().getClass().getName());
         }
     }
 

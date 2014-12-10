@@ -76,22 +76,21 @@ public class MainJPA {
 
         // Finds all the items
         logger.info("##### All items");
-        TypedQuery<Item> query = em.createNamedQuery("findAllItems", Item.class);
-        List<Item> items = query.getResultList();
+        List<Item> items = service.findAllItems();
         for (Item oneItem : items) {
             logger.info("# " + oneItem);
         }
 
         // Finds all the CDs
         logger.info("##### All CDs");
-        List<CD> cds = em.createNamedQuery("findAllCDs", CD.class).getResultList();
+        List<CD> cds = service.findAllCDs();
         for (CD oneCD : cds) {
             logger.info("# " + oneCD);
         }
 
         // Finds all the Books
         logger.info("##### All Books");
-        List<Book> books = em.createNamedQuery("findAllBooks", Book.class).getResultList();
+        List<Book> books = service.findAllBooks();
         for (Book oneBook : books) {
             logger.info("# " + oneBook);
         }

@@ -2,11 +2,13 @@ package org.agoncal.training.javaee.service;
 
 import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
+import org.agoncal.training.javaee.model.Item;
 import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -52,6 +54,10 @@ public class ItemService {
         return number;
     }
 
+    public List<Item> findAllItems() {
+        return em.createNamedQuery("findAllItems", Item.class).getResultList();
+    }
+
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
@@ -73,6 +79,10 @@ public class ItemService {
         return book;
     }
 
+    public List<Book> findAllBooks() {
+        return em.createNamedQuery("findAllBooks", Book.class).getResultList();
+    }
+
     public CD createCD(CD cd) {
         em.persist(cd);
         return cd;
@@ -84,5 +94,9 @@ public class ItemService {
 
     public void removeCD(CD cd) {
         em.remove(em.merge(cd));
+    }
+
+    public List<CD> findAllCDs() {
+        return em.createNamedQuery("findAllCDs", CD.class).getResultList();
     }
 }

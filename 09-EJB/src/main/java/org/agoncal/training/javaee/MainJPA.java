@@ -6,6 +6,7 @@ import org.agoncal.training.javaee.service.MockGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
+// TODO When executing MainJPA, can you see the CDIDebug logs ?
+@Vetoed
 public class MainJPA {
 
     // ======================================

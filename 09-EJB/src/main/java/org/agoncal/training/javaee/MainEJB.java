@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
+import javax.enterprise.inject.Vetoed;
 import javax.naming.Context;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.Map;
  *         http://www.antoniogoncalves.org
  *         --
  */
+// TODO When executing MainEJB, can you see the CDIDebug logs ?
+@Vetoed
 public class MainEJB {
 
     // ======================================

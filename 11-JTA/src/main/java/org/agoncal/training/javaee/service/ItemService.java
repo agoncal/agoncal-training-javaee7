@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    @PersistenceContext(unitName = "trainingPUJTA")
+    @Inject
     private EntityManager em;
 
     @Inject

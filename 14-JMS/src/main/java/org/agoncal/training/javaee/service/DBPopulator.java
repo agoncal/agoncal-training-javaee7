@@ -6,6 +6,7 @@ import org.agoncal.training.javaee.model.Language;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -16,9 +17,12 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
-// TODO Get rid of these annotations, one at a time, and see what happens
 @Singleton
 @Startup
+@DataSourceDefinition(name = "java:global/jdbc/lab13DS",
+        className = "org.apache.derby.jdbc.EmbeddedDriver",
+        url = "jdbc:derby:memory:lab13DB;create=true;user=app;password=app"
+)
 public class DBPopulator {
 
     // ======================================
@@ -28,8 +32,7 @@ public class DBPopulator {
     @Inject
     private ItemService itemService;
 
-    @Inject
-    private Logger logger;
+    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
 
     // ======================================
     // =          Lifecycle methods         =

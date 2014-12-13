@@ -6,9 +6,13 @@ import org.agoncal.training.javaee.model.Item;
 import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -29,7 +33,7 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    @Inject
+    @PersistenceContext(unitName = "trainingPUJTA")
     private EntityManager em;
 
     @Inject
@@ -71,6 +75,8 @@ public class ItemService {
         return em.find(Book.class, id);
     }
 
+    // Breaks because the em.remove() needs a tx
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public void removeBook(Book book) {
         em.remove(em.merge(book));
     }

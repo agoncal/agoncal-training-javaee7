@@ -19,9 +19,9 @@
         <module>09-EJB</module>
         <module>10-EJB</module>
         <module>11-JTA</module>
-        <module>12-EJB</module>
-        <module>13-CDI</module>
-        <module>14-BeanValidation</module>
+        <module>12-BeanValidation</module>
+        <module>13-BeanValidation</module>
+        <module>14-JMS</module>
         <module>15-JSF</module>
         <module>16-JSF</module>
         <module>17-JAXRS</module>

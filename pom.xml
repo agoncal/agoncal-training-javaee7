@@ -18,7 +18,7 @@
         <module>08-JPA</module>
         <module>09-EJB</module>
         <module>10-EJB</module>
-        <module>11-EJB</module>
+        <module>11-JTA</module>
         <module>12-EJB</module>
         <module>13-CDI</module>
         <module>14-BeanValidation</module>

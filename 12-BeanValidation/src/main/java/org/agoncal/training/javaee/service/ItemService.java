@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -30,8 +29,7 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    // TODO Use the trainingPU peristence unit and see what happens
-    @PersistenceContext(unitName = "trainingPUJTA")
+    @Inject
     private EntityManager em;
 
     @Inject
@@ -59,7 +57,7 @@ public class ItemService {
         return number;
     }
 
-        public List<Item> findAllItems() {
+    public List<Item> findAllItems() {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 

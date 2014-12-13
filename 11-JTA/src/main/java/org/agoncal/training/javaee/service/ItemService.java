@@ -19,6 +19,7 @@ import java.util.List;
  *         --
  */
 @Loggable
+// TODO Change @Stateless with @Transaction, execute Main EJB, what happens ?
 @Stateless
 public class ItemService {
 
@@ -30,7 +31,6 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    // TODO Use the trainingPU peristence unit and see what happens
     @PersistenceContext(unitName = "trainingPUJTA")
     private EntityManager em;
 
@@ -59,7 +59,7 @@ public class ItemService {
         return number;
     }
 
-        public List<Item> findAllItems() {
+    public List<Item> findAllItems() {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 

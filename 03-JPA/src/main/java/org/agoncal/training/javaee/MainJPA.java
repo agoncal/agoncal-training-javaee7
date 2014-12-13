@@ -7,6 +7,7 @@ import org.agoncal.training.javaee.service.MockGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -19,6 +20,7 @@ import java.sql.SQLException;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Vetoed
 public class MainJPA {
 
     // ======================================

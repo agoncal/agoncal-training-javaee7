@@ -17,6 +17,7 @@ public class DebugListener {
     // =             Attributes             =
     // ======================================
 
+    // TODO Instead, @Inject the Logger and see what happens
     private static final Logger logger = LogManager.getLogger(DebugListener.class);
 
     // ======================================

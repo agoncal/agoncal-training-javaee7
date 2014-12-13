@@ -3,6 +3,7 @@ package org.agoncal.training.javaee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.Persistence;
 
 /**
@@ -11,6 +12,7 @@ import javax.persistence.Persistence;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Vetoed
 public class MainJPASchemaGen {
 
     // ======================================

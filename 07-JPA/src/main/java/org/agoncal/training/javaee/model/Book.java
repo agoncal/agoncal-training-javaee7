@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue("B")
+// TODO Change the @NamedQuery to whatever you want and run the MainJPA class
 @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC")
 public class Book extends Item {
 

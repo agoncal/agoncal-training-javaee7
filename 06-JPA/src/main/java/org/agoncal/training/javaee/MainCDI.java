@@ -6,6 +6,7 @@ import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.inject.Vetoed;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import java.util.Set;
@@ -16,6 +17,7 @@ import java.util.Set;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Vetoed
 public class MainCDI {
 
     private static final Logger logger = LogManager.getLogger(MainCDI.class);

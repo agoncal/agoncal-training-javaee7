@@ -5,6 +5,7 @@
              version="2.1">
     <persistence-unit name="trainingPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!-- TODO Comment the <class> and see what happens -->
         <class>org.agoncal.training.javaee.model.Book</class>
         <properties>
             <!-- Embedded mode -->

@@ -3,6 +3,7 @@ package org.agoncal.training.javaee.service;
 import org.agoncal.training.javaee.model.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ejb.embeddable.EJBContainer;
@@ -22,6 +23,7 @@ import static org.junit.Assert.*;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Ignore
 public class ItemServiceTest {
 
     // ======================================

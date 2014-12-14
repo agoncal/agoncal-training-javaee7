@@ -3,7 +3,6 @@ package org.agoncal.training.javaee.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * @author Antonio Goncalves
@@ -16,7 +15,7 @@ import java.io.Serializable;
 @DiscriminatorColumn(name = "disc", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("I")
 @NamedQuery(name = "findAllItems", query = "SELECT i FROM Item i")
-public class Item implements Serializable {
+public class Item {
 
     // ======================================
     // =             Attributes             =

@@ -37,24 +37,6 @@ public class ItemService {
     @Inject
     private Logger logger;
 
-//    @Resource
-//    private ConnectionFactory factory;
-//
-//    @Resource
-//    private Destination queue;
-
-    // ======================================
-    // =            Constructors            =
-    // ======================================
-
-    public ItemService() {
-    }
-
-    public ItemService(EntityManager em, NumberGenerator numberGenerator) {
-        this.em = em;
-        this.numberGenerator = numberGenerator;
-    }
-
     // ======================================
     // =          Business methods          =
     // ======================================
@@ -72,7 +54,6 @@ public class ItemService {
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
-//        factory.createContext().createProducer().send(queue, book);
         return book;
     }
 

@@ -53,6 +53,7 @@ public class ItemService {
     // =          Business methods          =
     // ======================================
 
+    @GET
     public String generateNumber() {
         String number = numberGenerator.generateNumber();
         logger.debug("Number generated" + number);
@@ -63,20 +64,9 @@ public class ItemService {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 
-//    @POST
-//    @Path("book")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Response createJaxbBook(JAXBElement<Book> bookJaxb) {
-//        Book book = bookJaxb.getValue();
-//        book.setIsbn(numberGenerator.generateNumber());
-//        em.persist(book);
-//        em.flush(); // to get the id
-//        URI bookUri = uriInfo.getAbsolutePathBuilder().path(book.getId().toString()).build();
-//        Response resp = Response.created(bookUri).build();
-//        logger.fine("ItemService.createJaxbBook():" + resp.toString());
-//        return resp;
-//    }
-
+    @POST
+    @Path("book")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);

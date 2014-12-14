@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -20,9 +19,9 @@ import javax.inject.Inject;
  */
 @Singleton
 @Startup
-@DataSourceDefinition(name = "java:global/jdbc/lab12DS",
+@DataSourceDefinition(name = "java:global/jdbc/lab13DS",
         className = "org.apache.derby.jdbc.EmbeddedDriver",
-        url = "jdbc:derby:memory:lab12DB;create=true;user=app;password=app"
+        url = "jdbc:derby:memory:lab13DB;create=true;user=app;password=app"
 )
 public class DBPopulator {
 

@@ -21,7 +21,7 @@ import javax.inject.Inject;
 @Startup
 @DataSourceDefinition(name = "java:global/jdbc/lab12DS",
         className = "org.apache.derby.jdbc.EmbeddedDriver",
-        url = "jdbc:derby:memory:lab14DB;create=true;user=app;password=app"
+        url = "jdbc:derby:memory:lab12DB;create=true;user=app;password=app"
 )
 public class DBPopulator {
 

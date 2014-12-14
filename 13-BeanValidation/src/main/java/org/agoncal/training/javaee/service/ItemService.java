@@ -6,13 +6,12 @@ import org.agoncal.training.javaee.model.Item;
 import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -33,7 +32,7 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    @PersistenceContext(unitName = "trainingPUJTA")
+    @Inject
     private EntityManager em;
 
     @Inject
@@ -71,17 +70,15 @@ public class ItemService {
         return book;
     }
 
-    public Book findBook(Long id) {
+    public Book findBook(@NotNull Long id) {
         return em.find(Book.class, id);
     }
 
-    // Breaks because the em.remove() needs a tx
-    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public void removeBook(Book book) {
         em.remove(em.merge(book));
     }
 
-    public Book raiseBookPrice(Long id, Float raise) {
+    public Book raiseBookPrice(@NotNull Long id, @Min(1) Float raise) {
         Book book = em.find(Book.class, id);
         if (book != null)
             book.setPrice(book.getPrice() + raise);
@@ -97,7 +94,7 @@ public class ItemService {
         return cd;
     }
 
-    public CD findCD(Long id) {
+    public CD findCD(@NotNull Long id) {
         return em.find(CD.class, id);
     }
 

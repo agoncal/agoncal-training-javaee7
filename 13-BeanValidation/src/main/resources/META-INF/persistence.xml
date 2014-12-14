@@ -13,28 +13,29 @@
         <properties>
             <!-- Embedded mode -->
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:EE7Lab12DB;create=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:EE7Lab13DB;create=true"/>
             <!-- Client Server mode -->
             <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EE7Lab12DB;create=true"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EE7Lab13DB;create=true"/>-->
             <!--<property name="javax.persistence.jdbc.user" value="APP"/>-->
             <!--<property name="javax.persistence.jdbc.password" value="APP"/>-->
 
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="lab12Create.ddl"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab12Drop.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="lab13Create.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab13Drop.ddl"/>
 
             <property name="eclipselink.logging.level" value="INFO"/>
         </properties>
     </persistence-unit>
 
     <persistence-unit name="trainingPUJTA" transaction-type="JTA">
+        <jta-data-source>java:global/jdbc/lab13DS</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="lab12Create.ddl"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab12Drop.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="lab13Create.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab13Drop.ddl"/>
 
             <property name="eclipselink.logging.level" value="INFO"/>
         </properties>

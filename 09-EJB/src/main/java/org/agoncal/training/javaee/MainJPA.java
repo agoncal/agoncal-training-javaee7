@@ -69,6 +69,26 @@ public class MainJPA {
         tx.commit();
         logger.info("Book Persisted : " + book);
 
+        // Finds the book by primary key
+        book = service.findBook(4044L);
+        logger.info("Book Found     : " + book);
+
+        // Updates the book
+        tx.begin();
+        book.setTitle("Hitchhiker's Guide");
+        tx.commit();
+        logger.info("Book Updated   : " + book);
+
+        // Updates the price
+        tx.begin();
+        book = service.raiseBookPrice(4044L, 100.50F);
+        tx.commit();
+        logger.info("Price Raised   : " + book);
+
+        // Finds the book by primary key
+        book = service.findBook(4044L);
+        logger.info("Book Found     : " + book);
+
         // Creates a CD
         CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
         // Tracks
@@ -84,6 +104,21 @@ public class MainJPA {
         cd = service.createCD(cd);
         tx.commit();
         logger.info("CD Persisted : " + cd);
+
+        // Finds the cd by primary key
+        cd = service.findCD(2022L);
+        logger.info("CD Found     : " + cd);
+
+        // Updates the cd
+        tx.begin();
+        cd.setTitle("Help");
+        tx.commit();
+        logger.info("CD Updated   : " + cd);
+
+        // Finds the cd by primary key
+        cd = service.findCD(2022L);
+        logger.info("CD Found     : " + cd);
+
 
         // Finds all the items
         logger.info("##### All items");

@@ -1,6 +1,10 @@
 package org.agoncal.training.javaee.model;
 
+import org.agoncal.training.javaee.constraints.MusicGenre;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +24,12 @@ public class CD extends Item {
     // =             Attributes             =
     // ======================================
 
+    @Pattern(regexp = "[A-Z][a-z]{1,}", message = "{music.company}")
     private String musicCompany;
+    @Max(value = 5, message = "{number.cds}")
     private Integer numberOfCDs;
     private Float totalDuration;
+    @MusicGenre
     private String genre;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -2,9 +2,11 @@ package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.*;
 import org.agoncal.training.javaee.service.ItemService;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
+import javax.enterprise.inject.Vetoed;
 import javax.naming.Context;
 import java.io.File;
 import java.util.ArrayList;
@@ -18,23 +20,35 @@ import java.util.Map;
  *         http://www.antoniogoncalves.org
  *         --
  */
-public class Main {
+@Vetoed
+public class MainEJB {
 
-    private static Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
+    private static final Logger logger = LogManager.getLogger(MainEJB.class);
+
+    private static EJBContainer ec;
+    private static Context ctx;
+
+    // ======================================
+    // =          Business methods          =
+    // ======================================
 
     public static void main(String[] args) throws Exception {
 
+        // Gets an EEJBContainer
         Map<String, Object> properties = new HashMap<>();
         properties.put(EJBContainer.MODULES, new File("target/classes"));
+        ec = EJBContainer.createEJBContainer(properties);
+        ctx = ec.getContext();
 
-        EJBContainer ec = EJBContainer.createEJBContainer(properties);
-        Context ctx = ec.getContext();
+        // Looks up for the ItemService
+        ItemService service = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
-
-        // Creates an instance of book
-        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
+        // Creates a book
+        Book book = new Book("H2G2", 12.5F, "Best IT Scifi Book", 247, true, Language.ENGLISH);
         // Tags
         List<String> tags = new ArrayList<>();
         tags.add("scifi");
@@ -48,7 +62,10 @@ public class Main {
         chapters.add(chapter2);
         book.setChapters(chapters);
 
-        // Creates an instance of CD
+        // Persists the book
+        service.createBook(book);
+
+        // Creates a CD
         CD cd = new CD("St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
         // Tracks
         Track track1 = new Track("Sgt Pepper Lonely Heart Club Ban", 4.53f, "Listen to the trumpet carefully, it's George Harrison playing");
@@ -58,29 +75,26 @@ public class Main {
         tracks.add(track2);
         cd.setTracks(tracks);
 
-        // Persists the book to the database
-        itemService.createBook(book);
-
-        // Persists the CD to the database
-        itemService.createCD(cd);
+        // Persists the cd
+        service.createCD(cd);
 
         // Finds all the items
         logger.info("##### All items");
-        List<Item> items = itemService.findAllItems();
+        List<Item> items = service.findAllItems();
         for (Item oneItem : items) {
             logger.info("# " + oneItem);
         }
 
         // Finds all the CDs
         logger.info("##### All CDs");
-        List<CD> cds = itemService.findAllCDs();
+        List<CD> cds = service.findAllCDs();
         for (CD oneCD : cds) {
             logger.info("# " + oneCD);
         }
 
         // Finds all the Books
         logger.info("##### All Books");
-        List<Book> books = itemService.findAllBooks();
+        List<Book> books = service.findAllBooks();
         for (Book oneBook : books) {
             logger.info("# " + oneBook);
         }

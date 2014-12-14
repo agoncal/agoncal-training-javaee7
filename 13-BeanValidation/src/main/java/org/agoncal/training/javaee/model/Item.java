@@ -1,6 +1,8 @@
 package org.agoncal.training.javaee.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author Antonio Goncalves
@@ -22,6 +24,8 @@ public class Item {
     @Id
     @GeneratedValue
     protected Long id;
+    @NotNull
+    @Size(min = 4, max = 50, message = "{title}")
     @Column(nullable = false)
     protected String title;
     protected Float price;

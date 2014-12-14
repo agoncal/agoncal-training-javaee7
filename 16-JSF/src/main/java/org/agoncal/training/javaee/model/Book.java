@@ -1,8 +1,13 @@
 package org.agoncal.training.javaee.model;
 
+import org.agoncal.training.javaee.constraints.ChronologicalDates;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.TemporalType.*;
 
 /**
  * @author Antonio Goncalves
@@ -14,6 +19,7 @@ import java.util.List;
 @DiscriminatorValue("B")
 @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC")
 @EntityListeners(DebugListener.class)
+@ChronologicalDates
 public class Book extends Item {
 
     // ======================================
@@ -23,9 +29,13 @@ public class Book extends Item {
     private String isbn;
     private Integer nbOfPage;
     private Boolean illustrations;
+    @Temporal(DATE)
+    private Date earlyAccessDate;
+    @Temporal(DATE)
+    private Date publicationDate;
 
     // annotation can be omitted thanks to programming by exception
-    @Enumerated
+    @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
     // annotations can be omitted thanks to programming by exception
@@ -45,6 +55,13 @@ public class Book extends Item {
 
     public Book(String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
         super(title, price, description);
+        this.nbOfPage = nbOfPage;
+        this.illustrations = illustrations;
+        this.contentLanguage = contentLanguage;
+    }
+
+    public Book(Long id, String title, Float price, String description, Integer nbOfPage, Boolean illustrations, Language contentLanguage) {
+        super(id, title, price, description);
         this.nbOfPage = nbOfPage;
         this.illustrations = illustrations;
         this.contentLanguage = contentLanguage;
@@ -78,6 +95,22 @@ public class Book extends Item {
         this.illustrations = illustrations;
     }
 
+    public Date getEarlyAccessDate() {
+        return earlyAccessDate;
+    }
+
+    public void setEarlyAccessDate(Date earlyAccessDate) {
+        this.earlyAccessDate = earlyAccessDate;
+    }
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
     public Language getContentLanguage() {
         return contentLanguage;
     }
@@ -88,17 +121,6 @@ public class Book extends Item {
 
     public List<String> getTags() {
         return tags;
-    }
-
-    public String getTagsAsString() {
-        String s = "";
-        for (String tag : tags) {
-            s += tag + ", ";
-        }
-        if (s.length() > 2)
-            return s.substring(0, s.length() - 2);
-        else
-            return s;
     }
 
     public void setTags(List<String> tags) {
@@ -129,6 +151,8 @@ public class Book extends Item {
         sb.append(", nbOfPage=").append(nbOfPage);
         sb.append(", illustrations=").append(illustrations);
         sb.append(", contentLanguage=").append(contentLanguage);
+        sb.append(", earlyAccessDate=").append(earlyAccessDate);
+        sb.append(", publicationDate=").append(publicationDate);
         sb.append(", tags=").append(tags);
         sb.append(", chapters=").append(chapters);
         sb.append('}');

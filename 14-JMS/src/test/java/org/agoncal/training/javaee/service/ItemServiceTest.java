@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
+import javax.naming.NamingException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class ItemServiceTest {
     // ======================================
     // =             Attributes             =
     // ======================================
+
     private static EJBContainer ec;
     private static Context ctx;
 
@@ -34,7 +36,7 @@ public class ItemServiceTest {
     // ======================================
 
     @BeforeClass
-    public static void initContainer() {
+    public static void initEJBContainer() {
         Map<String, Object> properties = new HashMap<>();
         properties.put(EJBContainer.MODULES, new File[]{new File("target/classes"), new File("target/test-classes")});
         ec = EJBContainer.createEJBContainer(properties);
@@ -53,9 +55,22 @@ public class ItemServiceTest {
     // ======================================
 
     @Test
+    public void shouldGenerateANumber() throws NamingException {
+
+        // Looks up for the ItemService
+        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
+
+        // Generates a number
+        String number = itemService.generateNumber();
+
+        // Checks the ISBN number has been generated
+        assertTrue(number.startsWith("13-84356-"));
+    }
+
+    @Test
     public void shouldCreateABook() throws Exception {
 
-        // Looks up for the EJB
+        // Looks up for the ItemService
         ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book

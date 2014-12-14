@@ -19,9 +19,9 @@ import javax.inject.Inject;
  */
 @Singleton
 @Startup
-@DataSourceDefinition(name = "java:global/jdbc/lab13DS",
+@DataSourceDefinition(name = "java:global/jdbc/lab14DS",
         className = "org.apache.derby.jdbc.EmbeddedDriver",
-        url = "jdbc:derby:memory:lab13DB;create=true;user=app;password=app"
+        url = "jdbc:derby:memory:lab14DB;create=true;user=app;password=app"
 )
 public class DBPopulator {
 
@@ -32,7 +32,8 @@ public class DBPopulator {
     @Inject
     private ItemService itemService;
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =

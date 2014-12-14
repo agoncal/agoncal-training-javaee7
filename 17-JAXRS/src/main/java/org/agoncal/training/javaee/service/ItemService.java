@@ -3,6 +3,8 @@ package org.agoncal.training.javaee.service;
 import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Item;
+import org.agoncal.training.javaee.util.Loggable;
+import org.apache.logging.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -10,8 +12,9 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -19,8 +22,8 @@ import java.util.logging.Logger;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Loggable
 @Stateless
-@Interceptors(LoggingInterceptor.class)
 @Path("/items")
 public class ItemService {
 
@@ -29,21 +32,45 @@ public class ItemService {
     // ======================================
 
     @Inject
+    @ThirteenDigits
+    private NumberGenerator numberGenerator;
+
+    @Inject
     private EntityManager em;
 
     @Inject
-    @ThirteenDigits
-    /*@EightDigits*/
-    private NumberGenerator numberGenerator;
+    private Logger logger;
+
+//    @Resource
+//    private ConnectionFactory factory;
+//
+//    @Resource
+//    private Destination queue;
 
 //    @Context
 //    private UriInfo uriInfo;
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
-
     // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public ItemService() {
+    }
+
+    public ItemService(EntityManager em, NumberGenerator numberGenerator) {
+        this.em = em;
+        this.numberGenerator = numberGenerator;
+    }
+
+        // ======================================
     // =          Business methods          =
     // ======================================
+
+    public String generateNumber() {
+        String number = numberGenerator.generateNumber();
+        logger.debug("Number generated" + number);
+        return number;
+    }
 
     public List<Item> findAllItems() {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
@@ -66,14 +93,19 @@ public class ItemService {
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
+//        factory.createContext().createProducer().send(queue, book);
         return book;
     }
 
     @GET
     @Path("book/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Book findBook(@PathParam("id") Long id) {
+    public Book findBook(@PathParam("id") @NotNull Long id) {
         return em.find(Book.class, id);
+    }
+
+    public void removeBook(Book book) {
+        em.remove(em.merge(book));
     }
 
     @DELETE
@@ -82,8 +114,11 @@ public class ItemService {
         em.remove(em.find(Book.class, id));
     }
 
-    public void removeBook(Book book) {
-        em.remove(em.merge(book));
+    public Book raiseBookPrice(@NotNull Long id, @Min(1) Float raise) {
+        Book book = em.find(Book.class, id);
+        if (book != null)
+            book.setPrice(book.getPrice() + raise);
+        return book;
     }
 
     @GET
@@ -101,7 +136,7 @@ public class ItemService {
     @GET
     @Path("cd/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CD findCD(@PathParam("id") Long id) {
+    public CD findCD(@PathParam("id") @NotNull Long id) {
         return em.find(CD.class, id);
     }
 

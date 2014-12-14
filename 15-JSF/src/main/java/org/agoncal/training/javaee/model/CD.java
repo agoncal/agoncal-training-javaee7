@@ -50,6 +50,14 @@ public class CD extends Item {
         this.genre = genre;
     }
 
+    public CD(Long id, String title, Float price, String description, String musicCompany, Integer numberOfCDs, Float totalDuration, String genre) {
+        super(id, title, price, description);
+        this.musicCompany = musicCompany;
+        this.numberOfCDs = numberOfCDs;
+        this.totalDuration = totalDuration;
+        this.genre = genre;
+    }
+
     // ======================================
     // =          Getters & Setters         =
     // ======================================

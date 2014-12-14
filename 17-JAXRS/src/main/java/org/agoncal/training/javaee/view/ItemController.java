@@ -4,6 +4,7 @@ import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
 import org.agoncal.training.javaee.service.ItemService;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -12,7 +13,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -38,7 +38,8 @@ public class ItemController {
     private CD cd = new CD();
     private List<CD> cdList = new ArrayList<>();
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =
@@ -46,7 +47,7 @@ public class ItemController {
 
     @PostConstruct
     private void initList() {
-        logger.fine("ItemController.initList()");
+        logger.debug("ItemController.initList()");
         bookList = itemService.findAllBooks();
         cdList = itemService.findAllCDs();
     }
@@ -56,7 +57,7 @@ public class ItemController {
     // ======================================
 
     public String doCreateBook() {
-        logger.fine("ItemController.doCreateBook():" + book);
+        logger.debug("ItemController.doCreateBook():" + book);
         book.setTags(transformToList(tags));
         itemService.createBook(book);
         bookList = itemService.findAllBooks();
@@ -65,7 +66,7 @@ public class ItemController {
     }
 
     public String doCreateCD() {
-        logger.fine("ItemController.doCreateCD():" + cd);
+        logger.debug("ItemController.doCreateCD():" + cd);
         itemService.createCD(cd);
         cdList = itemService.findAllCDs();
         cd = new CD();
@@ -77,7 +78,7 @@ public class ItemController {
     // ======================================
 
     private List<String> transformToList(String tagsRequestParameter) {
-        logger.finer("ItemController.transformToList():" + tagsRequestParameter);
+        logger.debug("ItemController.transformToList():" + tagsRequestParameter);
         if (tagsRequestParameter == null)
             return null;
         List<String> listOfTags = new ArrayList<>();

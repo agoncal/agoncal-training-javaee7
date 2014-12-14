@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 public class IsbnGeneratorTest {
 
     // ======================================
-    // =              Unit tests            =
+    // =             Unit tests             =
     // ======================================
 
     @Test

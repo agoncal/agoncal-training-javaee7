@@ -49,7 +49,7 @@ public class ItemServiceTest {
     }
 
     // ======================================
-    // =              Unit tests            =
+    // =             Unit tests             =
     // ======================================
 
     @Test

@@ -7,6 +7,6 @@ import javax.persistence.PersistenceContext;
 public class DatabaseProducer {
 
     @Produces
-    @PersistenceContext(unitName = "trainingPU")
+    @PersistenceContext(unitName = "trainingPUJTA")
     private EntityManager em;
 }

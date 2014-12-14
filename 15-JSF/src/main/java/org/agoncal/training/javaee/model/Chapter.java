@@ -16,12 +16,12 @@ public class Chapter {
     // ======================================
     // =             Attributes             =
     // ======================================
+
     @Id
     @GeneratedValue
     private Long id;
     private String title;
     private String resume;
-
 
     // ======================================
     // =            Constructors            =

@@ -22,7 +22,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MusicGenre {
 
-    String message() default "{music.genre}";
+    String message() default "{org.agoncal.training.javaee.constraints.MusicGenre.message}";
 
     Class<? extends Payload>[] payload() default {};
 

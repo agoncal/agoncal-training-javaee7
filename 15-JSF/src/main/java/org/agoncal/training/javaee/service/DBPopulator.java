@@ -3,13 +3,13 @@ package org.agoncal.training.javaee.service;
 import org.agoncal.training.javaee.model.Book;
 import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -17,11 +17,8 @@ import java.util.logging.Logger;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Singleton
-@Startup
-@DataSourceDefinition(name = "java:global/jdbc/lab15DS",
-        className = "org.apache.derby.jdbc.EmbeddedDriver",
-        url = "jdbc:derby:memory:lab15DB;create=true;user=app;password=app")
+//@Singleton
+//@Startup
 public class DBPopulator {
 
     // ======================================
@@ -31,7 +28,8 @@ public class DBPopulator {
     @Inject
     private ItemService itemService;
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =

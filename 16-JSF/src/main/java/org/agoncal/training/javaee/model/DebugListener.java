@@ -1,7 +1,9 @@
 package org.agoncal.training.javaee.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.persistence.*;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves
@@ -15,7 +17,7 @@ public class DebugListener {
     // =             Attributes             =
     // ======================================
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    private static final Logger logger = LogManager.getLogger(DebugListener.class);
 
     // ======================================
     // =          Lifecycle Methods         =
@@ -23,36 +25,36 @@ public class DebugListener {
 
     @PrePersist
     void prePersist(Object object) {
-        logger.finest("### DebugListener.prePersist(" + object + ")");
+        logger.trace("### prePersist(" + object + ")");
     }
 
     @PostPersist
     void postPersist(Object object) {
-        logger.finest("### DebugListener.postPersist(" + object + ")");
+        logger.trace("### postPersist(" + object + ")");
     }
 
     @PreUpdate
     void preUpdate(Object object) {
-        logger.finest("### DebugListener.preUpdate(" + object + ")");
+        logger.trace("### preUpdate(" + object + ")");
     }
 
     @PostUpdate
     void postUpdate(Object object) {
-        logger.finest("### DebugListener.postUpdate(" + object + ")");
+        logger.trace("### postUpdate(" + object + ")");
     }
 
     @PreRemove
     void preRemove(Object object) {
-        logger.finest("### DebugListener.preRemove(" + object + ")");
+        logger.trace("### preRemove(" + object + ")");
     }
 
     @PostRemove
     void postRemove(Object object) {
-        logger.finest("### DebugListener.postRemove(" + object + ")");
+        logger.trace("### postRemove(" + object + ")");
     }
 
     @PostLoad
     void postLoad(Object object) {
-        logger.finest("### DebugListener.postLoad(" + object + ")");
+        logger.trace("### postLoad(" + object + ")");
     }
 }

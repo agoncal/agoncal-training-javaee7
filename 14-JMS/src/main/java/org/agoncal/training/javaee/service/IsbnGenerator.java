@@ -3,7 +3,7 @@ package org.agoncal.training.javaee.service;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.interceptor.Interceptors;
+import javax.inject.Inject;
 import java.util.Random;
 
 /**
@@ -19,9 +19,10 @@ public class IsbnGenerator implements NumberGenerator {
     // =             Attributes             =
     // ======================================
 
-    private int number;
+    private int postfix;
 
-    private Logger logger = Logger.getLogger("org.agoncal.training.javaee6");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Lifecycle methods         =
@@ -29,19 +30,18 @@ public class IsbnGenerator implements NumberGenerator {
 
     @PostConstruct
     private void init() {
-        number = Math.abs(new Random().nextInt());
-        logger.fine("IsbnGenerator.init():" + number);
+        postfix = Math.abs(new Random().nextInt());
+        logger.debug("Postfix: " + postfix);
     }
 
     // ======================================
     // =          Business methods          =
     // ======================================
 
-    @Interceptors(LoggingInterceptor.class)
     public String generateNumber() {
-        String isbn = "13-84356-" + number++;
-        logger.fine("IsbnGenerator.generateNumber():" + isbn);
-        return isbn;
+        String number = "13-84356-" + postfix++;
+        logger.debug("Generated Isbn Number: " + number);
+        return number;
     }
 
 }

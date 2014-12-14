@@ -24,11 +24,9 @@ public class Book extends Item {
     private Integer nbOfPage;
     private Boolean illustrations;
 
-    // annotation can be omitted thanks to programming by exception
     @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
-    // annotations can be omitted thanks to programming by exception
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();

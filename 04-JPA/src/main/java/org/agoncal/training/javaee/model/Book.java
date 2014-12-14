@@ -29,11 +29,9 @@ public class Book {
     private Integer nbOfPage;
     private Boolean illustrations;
 
-    // annotation can be omitted thanks to programming by exception
     @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
-    // annotations can be omitted thanks to programming by exception
     @ElementCollection
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();

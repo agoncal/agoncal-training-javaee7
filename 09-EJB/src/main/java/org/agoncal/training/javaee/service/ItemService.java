@@ -59,7 +59,7 @@ public class ItemService {
         return number;
     }
 
-        public List<Item> findAllItems() {
+    public List<Item> findAllItems() {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 

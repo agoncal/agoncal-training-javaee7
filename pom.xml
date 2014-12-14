@@ -21,10 +21,10 @@
         <module>11-JTA</module>
         <module>12-BeanValidation</module>
         <module>13-BeanValidation</module>
-        <module>14-JMS</module>
+        <module>14-JSF</module>
         <module>15-JSF</module>
-        <module>16-JSF</module>
-        <module>17-JAXRS</module>
+        <module>16-JAXRS</module>
+        <module>18-JMS</module>
     </modules>
 
     <properties>

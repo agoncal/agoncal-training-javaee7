@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.TemporalType.*;
+import static javax.persistence.TemporalType.DATE;
 
 /**
  * @author Antonio Goncalves
@@ -34,11 +34,9 @@ public class Book extends Item {
     @Temporal(DATE)
     private Date publicationDate;
 
-    // annotation can be omitted thanks to programming by exception
     @Convert(converter = LanguageConverter.class)
     private Language contentLanguage;
 
-    // annotations can be omitted thanks to programming by exception
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();
@@ -121,6 +119,17 @@ public class Book extends Item {
 
     public List<String> getTags() {
         return tags;
+    }
+
+    public String getTagsAsString() {
+        String s = "";
+        for (String tag : tags) {
+            s += tag + ", ";
+        }
+        if (s.length() > 2)
+            return s.substring(0, s.length() - 2);
+        else
+            return s;
     }
 
     public void setTags(List<String> tags) {

@@ -20,9 +20,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = ChronologicalDatesValidator.class)
 public @interface ChronologicalDates {
 
-  String message() default "{org.agoncal.training.javaee.constraints.ChronologicalDates.message}";
+    String message() default "{org.agoncal.training.javaee.constraints.ChronologicalDates.message}";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

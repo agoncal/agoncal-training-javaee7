@@ -6,11 +6,8 @@ import org.agoncal.training.javaee.model.Item;
 import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -39,12 +36,6 @@ public class ItemService {
 
     @Inject
     private Logger logger;
-
-//    @Resource
-//    private ConnectionFactory factory;
-//
-//    @Resource
-//    private Destination queue;
 
     // ======================================
     // =            Constructors            =
@@ -75,7 +66,6 @@ public class ItemService {
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
-//        factory.createContext().createProducer().send(queue, book);
         return book;
     }
 

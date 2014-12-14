@@ -1,23 +1,16 @@
 package org.agoncal.training.javaee;
 
-import org.agoncal.training.javaee.model.*;
-import org.agoncal.training.javaee.service.ItemService;
-import org.agoncal.training.javaee.service.MockGenerator;
+import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.Language;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.inject.Vetoed;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -5,19 +5,19 @@
       xmlns:composite="http://xmlns.jcp.org/jsf/composite">
 
 <composite:interface>
-    <composite:attribute name="item"/>
+    <composite:attribute name="item" required="true"/>
 </composite:interface>
 
 <composite:implementation>
     <h:panelGrid columns="2">
         <h:outputLabel value="Title : "/>
-        <h:inputText value="Dummy title"/>
+        <h:inputText value="#{cc.attrs.item.title}"/>
 
         <h:outputLabel value="Price : "/>
-        <h:inputText value="Dummy price"/>
+        <h:inputText value="#{cc.attrs.item.price}"/>
 
         <h:outputLabel value="Description : "/>
-        <h:inputTextarea value="Dummy description" cols="16" rows="3"/>
+        <h:inputTextarea value="#{cc.attrs.item.description}" cols="16" rows="3"/>
     </h:panelGrid>
 </composite:implementation>
 

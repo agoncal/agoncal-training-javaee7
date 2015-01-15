@@ -30,11 +30,11 @@ public class LoggingInterceptor {
 
     @AroundInvoke
     public Object logMethod(InvocationContext ic) throws Exception {
-        logger.debug(">" + ic.getTarget().getClass().getName(), ic.getMethod().getName());
+        logger.debug("> " + ic.getMethod());
         try {
             return ic.proceed();
         } finally {
-            logger.debug("<" + ic.getTarget().getClass().getName());
+            logger.debug("< " + ic.getMethod());
         }
     }
 

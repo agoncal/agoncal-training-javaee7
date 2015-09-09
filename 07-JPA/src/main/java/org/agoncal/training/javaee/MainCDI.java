@@ -35,10 +35,10 @@ public class MainCDI {
         Set<Bean<?>> beans = beanManager.getBeans(ItemService.class);
         Bean<?> bean = beanManager.resolve(beans);
 
-        ItemService ItemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
+        ItemService itemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
 
-        logger.info("# " + ItemService.generateNumber());
-        logger.info("# " + ItemService.generateNumber());
+        logger.info("# " + itemService.generateNumber());
+        logger.info("# " + itemService.generateNumber());
 
         // finally we gonna stop the container
         cdiContainer.shutdown();

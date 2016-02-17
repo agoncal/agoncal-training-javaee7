@@ -1,0 +1,24 @@
+@startuml
+
+package "main" {
+}
+package "test" {
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService
+
+    ItemService <.. NumberGenerator : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+main ..> service
+test ..> service
+
+@enduml

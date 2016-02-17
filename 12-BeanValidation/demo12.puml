@@ -1,0 +1,60 @@
+@startuml
+
+package "main" {
+}
+package "test" {
+}
+
+package "constraints" {
+    annotation MusicGenre << @Constraint >> #8FBC8F
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService << @Stateless >>
+    class DatabaseProducer
+    class DBPopulator << @Singleton >>
+
+    ItemService <.. NumberGenerator : @Inject
+    DBPopulator <.. ItemService : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+package "model" {
+    class DebugListener
+    class Item << @Entity >> #8FBC8F
+    class CD << @Entity >> #8FBC8F
+    class Track << @Entity >>
+    class Chapter << @Entity >>
+    class LanguageConverter << @Converter >>
+    class Book << @Entity >>
+    class String
+    enum Language
+
+    Item <|-- CD
+    Item <|-- Book
+    CD --> "*" Track
+    Book --> "*" String
+    Book --> "*" Chapter
+    Book --> Language
+    Book ..> LanguageConverter
+}
+
+package "util" {
+    annotation Loggable
+    class LoggingInterceptor << @Loggable >>
+    class LoggingProducer
+}
+
+main ..> service
+test ..> service
+service ..> model
+service ..> util
+model ..> constraints
+
+@enduml

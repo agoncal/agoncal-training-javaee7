@@ -1,0 +1,55 @@
+@startuml
+
+package "main" {
+}
+package "test" {
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService << @Stateless >>
+    class DatabaseProducer
+    class DBPopulator << @DataSourceDefinition >> #8FBC8F
+
+    ItemService <.. NumberGenerator : @Inject
+    DBPopulator <.. ItemService : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+package "model" {
+    class DebugListener
+    class Item << @Entity >>
+    class CD << @Entity >>
+    class Track << @Entity >>
+    class Chapter << @Entity >>
+    class LanguageConverter << @Converter >>
+    class Book << @Entity >>
+    class String
+    enum Language
+
+    Item <|-- CD
+    Item <|-- Book
+    CD --> "*" Track
+    Book --> "*" String
+    Book --> "*" Chapter
+    Book --> Language
+    Book ..> LanguageConverter
+}
+
+package "util" {
+    annotation Loggable
+    class LoggingInterceptor << @Loggable >>
+    class LoggingProducer
+}
+
+main ..> service
+test ..> service
+service ..> model
+service ..> util
+
+@enduml

@@ -1,17 +1,22 @@
 @startuml
 
 package "main" {
-    class MainEJB
-    class MainJPA
-    class MainJPASchemaGen
+    class MainREST #8FBC8F
 }
+
 package "test" {
     class ItemServiceTest
-    class BookTest
-    class ChapterTest
-    class CDTest
-    class ItemTest
-    class TrackTest
+}
+
+package "webapp"  {
+    class newItem
+    class newBook
+    class newCD
+    class template
+}
+
+package "view"  {
+    class ItemController
 }
 
 package "service" {
@@ -19,9 +24,10 @@ package "service" {
     class IsbnGenerator << @ThirteenDigits >>
     class IssnGenerator << @EightDigits >>
     class MockGenerator << @Alternative >>
-    class ItemService << @Stateless >>
-    class DatabaseProducer #8FBC8F
-    class DBPopulator << @Singleton >> #8FBC8F
+    class ItemService << @Stateless >> << Path >>
+    class ApplicationConfig
+    class DatabaseProducer
+    class DBPopulator << @Singleton >>
 
     ItemService <.. NumberGenerator : @Inject
     DBPopulator <.. ItemService : @Inject
@@ -33,10 +39,10 @@ package "service" {
 package "model" {
     class DebugListener
     class Item << @Entity >> << @NamedQuery >>
-    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >>
+    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >> << XmlRootElement >>
     class Track << @Entity >>
     class Chapter << @Entity >>
-    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >>
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >> << ChronologicalDates >> << XmlRootElement >>
     class String
     enum Language
     class LanguageConverter << @Converter >>
@@ -50,6 +56,12 @@ package "model" {
     Book ..> LanguageConverter
 }
 
+package "constraints" {
+    annotation MusicGenre << @Constraint >>
+    annotation ChronologicalDates << @Constraint >>
+    class ChronologicalDatesValidator
+}
+
 package "util" {
     annotation Loggable
     class LoggingInterceptor << @Loggable >>
@@ -57,9 +69,11 @@ package "util" {
     class CDIDebug << Extension >>
 }
 
-main ..> service
 test ..> service
+webapp ..> view
+view ..> service
 service ..> model
 service ..> util
+model ..> constraints
 
 @enduml

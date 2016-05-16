@@ -1,8 +1,10 @@
 @startuml
 
 package "main" {
+    class MainCDI
 }
 package "test" {
+    class ItemServiceTest
 }
 
 package "service" {

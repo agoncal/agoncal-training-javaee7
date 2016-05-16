@@ -1,8 +1,13 @@
 @startuml
 
 package "main" {
+    class MainCDI
+    class MainJPA #8FBC8F
+    class MainJPASchemaGen #8FBC8F
 }
 package "test" {
+    class ItemServiceTest
+    class BookTest #8FBC8F
 }
 
 package "service" {
@@ -19,10 +24,10 @@ package "service" {
 }
 
 package "model" {
-    class LanguageConverter << @Converter >> #8FBC8F
     class Book << @Entity >> #8FBC8F
     class String #8FBC8F
     enum Language #8FBC8F
+    class LanguageConverter << @Converter >> #8FBC8F
 
     Book --> "*" String
     Book --> Language
@@ -33,6 +38,7 @@ package "util" {
     annotation Loggable
     class LoggingInterceptor << @Loggable >>
     class LoggingProducer
+    class CDIDebug << Extension >>
 }
 
 main ..> service

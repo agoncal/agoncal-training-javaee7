@@ -1,14 +1,14 @@
 @startuml
 
-package "main" {
-}
 package "test" {
+    class ItemServiceTest
 }
 
-package "constraints" {
-    annotation MusicGenre << @Constraint >>
-    annotation ChronologicalDates << @Constraint >> #8FBC8F
-    class ChronologicalDatesValidator #8FBC8F
+package "webapp"  {
+    class newItem  #8FBC8F
+    class newBook  #8FBC8F
+    class newCD  #8FBC8F
+    class template  #8FBC8F
 }
 
 package "service" {
@@ -29,14 +29,14 @@ package "service" {
 
 package "model" {
     class DebugListener
-    class Item << @Entity >>
-    class CD << @Entity >>
+    class Item << @Entity >> << @NamedQuery >>
+    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >>
     class Track << @Entity >>
     class Chapter << @Entity >>
-    class LanguageConverter << @Converter >>
-    class Book << @Entity >>
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >> << ChronologicalDates >>
     class String
     enum Language
+    class LanguageConverter << @Converter >>
 
     Item <|-- CD
     Item <|-- Book
@@ -47,13 +47,19 @@ package "model" {
     Book ..> LanguageConverter
 }
 
+package "constraints" {
+    annotation MusicGenre << @Constraint >>
+    annotation ChronologicalDates << @Constraint >>
+    class ChronologicalDatesValidator
+}
+
 package "util" {
     annotation Loggable
     class LoggingInterceptor << @Loggable >>
     class LoggingProducer
+    class CDIDebug << Extension >>
 }
 
-main ..> service
 test ..> service
 service ..> model
 service ..> util

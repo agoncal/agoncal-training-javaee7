@@ -1,8 +1,17 @@
 @startuml
 
 package "main" {
+    class MainEJB
+    class MainJPA
+    class MainJPASchemaGen
 }
 package "test" {
+    class ItemServiceTest
+    class BookTest
+    class ChapterTest
+    class CDTest
+    class ItemTest
+    class TrackTest
 }
 
 package "service" {
@@ -12,7 +21,7 @@ package "service" {
     class MockGenerator << @Alternative >>
     class ItemService << @Stateless >>
     class DatabaseProducer
-    class DBPopulator << @DataSourceDefinition >> #8FBC8F
+    class DBPopulator << @Singleton >> << @DataSourceDefinition >> #8FBC8F
 
     ItemService <.. NumberGenerator : @Inject
     DBPopulator <.. ItemService : @Inject
@@ -23,14 +32,14 @@ package "service" {
 
 package "model" {
     class DebugListener
-    class Item << @Entity >>
-    class CD << @Entity >>
+    class Item << @Entity >> << @NamedQuery >>
+    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >>
     class Track << @Entity >>
     class Chapter << @Entity >>
-    class LanguageConverter << @Converter >>
-    class Book << @Entity >>
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >>
     class String
     enum Language
+    class LanguageConverter << @Converter >>
 
     Item <|-- CD
     Item <|-- Book
@@ -45,6 +54,7 @@ package "util" {
     annotation Loggable
     class LoggingInterceptor << @Loggable >>
     class LoggingProducer
+    class CDIDebug << Extension >>
 }
 
 main ..> service

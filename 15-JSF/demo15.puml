@@ -1,17 +1,18 @@
 @startuml
 
-package "main" {
-    class MainEJB
-    class MainJPA
-    class MainJPASchemaGen
-}
 package "test" {
     class ItemServiceTest
-    class BookTest
-    class ChapterTest
-    class CDTest
-    class ItemTest
-    class TrackTest
+}
+
+package "webapp"  {
+    class newItem  #8FBC8F
+    class newBook  #8FBC8F
+    class newCD  #8FBC8F
+    class template  #8FBC8F
+}
+
+package "view"  {
+    class ItemController  #8FBC8F
 }
 
 package "service" {
@@ -20,8 +21,8 @@ package "service" {
     class IssnGenerator << @EightDigits >>
     class MockGenerator << @Alternative >>
     class ItemService << @Stateless >>
-    class DatabaseProducer #8FBC8F
-    class DBPopulator << @Singleton >> #8FBC8F
+    class DatabaseProducer
+    class DBPopulator << @Singleton >>
 
     ItemService <.. NumberGenerator : @Inject
     DBPopulator <.. ItemService : @Inject
@@ -36,7 +37,7 @@ package "model" {
     class CD << @Entity >> << @NamedQuery >> << @EntityListeners >>
     class Track << @Entity >>
     class Chapter << @Entity >>
-    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >>
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >> << ChronologicalDates >>
     class String
     enum Language
     class LanguageConverter << @Converter >>
@@ -50,6 +51,12 @@ package "model" {
     Book ..> LanguageConverter
 }
 
+package "constraints" {
+    annotation MusicGenre << @Constraint >>
+    annotation ChronologicalDates << @Constraint >>
+    class ChronologicalDatesValidator
+}
+
 package "util" {
     annotation Loggable
     class LoggingInterceptor << @Loggable >>
@@ -57,9 +64,11 @@ package "util" {
     class CDIDebug << Extension >>
 }
 
-main ..> service
 test ..> service
+webapp ..> view
+view ..> service
 service ..> model
 service ..> util
+model ..> constraints
 
 @enduml

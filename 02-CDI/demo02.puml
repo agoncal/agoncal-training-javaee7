@@ -1,8 +1,10 @@
 @startuml
 
 package "main" {
+    class MainCDI
 }
 package "test" {
+    class ItemServiceTest
 }
 
 package "service" {
@@ -22,6 +24,7 @@ package "util" {
     annotation Loggable #8FBC8F
     class LoggingInterceptor << @Loggable >> #8FBC8F
     class LoggingProducer #8FBC8F
+    class CDIDebug << Extension >> #8FBC8F
 }
 
 main ..> service

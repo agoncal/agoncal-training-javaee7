@@ -1,5 +1,7 @@
 @startuml
 
+hide members
+
 package "main" {
     class MainCDI
     class MainJPA #8FBC8F

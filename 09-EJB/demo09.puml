@@ -1,5 +1,7 @@
 @startuml
 
+hide members
+
 package "main" {
     class MainEJB #8FBC8F
     class MainJPA

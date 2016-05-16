@@ -1,5 +1,7 @@
 @startuml
 
+hide members
+
 package "test" {
     class ItemServiceTest
 }

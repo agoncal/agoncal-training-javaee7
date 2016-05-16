@@ -6,7 +6,7 @@ package "test" {
     class ItemServiceTest
 }
 
-package "webapp"  {
+package "webapp"  <<Cloud>> {
     class newItem  #8FBC8F
     class newBook  #8FBC8F
     class newCD  #8FBC8F

@@ -11,6 +11,7 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
+@Loggable
 public class ItemService {
 
     // ======================================

@@ -23,7 +23,7 @@ package "service" {
     class MockGenerator << @Alternative >>
     class ItemService #8FBC8F
 
-    ItemService <.. NumberGenerator : @Inject
+    ItemService <.right. NumberGenerator : @Inject
     NumberGenerator <|.. IsbnGenerator
     NumberGenerator <|.. IssnGenerator
     NumberGenerator <|.. MockGenerator
@@ -43,7 +43,7 @@ package "model" {
     Item <|-- Book
     CD --> "*" Track
     Book --> "*" String
-    Book --> "*" Chapter
+    Book -right-> "*" Chapter
     Book --> Language
     Book ..> LanguageConverter
 }

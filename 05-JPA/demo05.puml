@@ -4,16 +4,10 @@ hide members
 
 package "main" {
     class MainCDI
-    class MainJPA
     class MainJPASchemaGen
 }
 package "test" {
     class ItemServiceTest
-    class BookTest
-    class ChapterTest
-    class CDTest #8FBC8F
-    class ItemTest #8FBC8F
-    class TrackTest #8FBC8F
 }
 
 package "service" {
@@ -23,7 +17,7 @@ package "service" {
     class MockGenerator << @Alternative >>
     class ItemService
 
-    ItemService <.. NumberGenerator : @Inject
+    ItemService <.right. NumberGenerator : @Inject
     NumberGenerator <|.. IsbnGenerator
     NumberGenerator <|.. IssnGenerator
     NumberGenerator <|.. MockGenerator
@@ -43,7 +37,7 @@ package "model" {
     Item <|-- Book
     CD --> "*" Track
     Book --> "*" String
-    Book --> "*" Chapter
+    Book -right-> "*" Chapter
     Book --> Language
     Book ..> LanguageConverter
 }

@@ -2,10 +2,6 @@
 
 hide members
 
-package "test" {
-    class ItemServiceTest
-}
-
 package "webapp"  <<Cloud>> {
     class newItem  #8FBC8F
     class newBook  #8FBC8F
@@ -22,8 +18,8 @@ package "service" {
     class DatabaseProducer
     class DBPopulator << @Singleton >>
 
-    ItemService <.. NumberGenerator : @Inject
-    DBPopulator <.. ItemService : @Inject
+    ItemService <.right. NumberGenerator : @Inject
+    DBPopulator <.down. ItemService : @Inject
     NumberGenerator <|.. IsbnGenerator
     NumberGenerator <|.. IssnGenerator
     NumberGenerator <|.. MockGenerator
@@ -44,7 +40,7 @@ package "model" {
     Item <|-- Book
     CD --> "*" Track
     Book --> "*" String
-    Book --> "*" Chapter
+    Book -right-> "*" Chapter
     Book --> Language
     Book ..> LanguageConverter
 }
@@ -62,7 +58,6 @@ package "util" {
     class CDIDebug << Extension >>
 }
 
-test ..> service
 service ..> model
 service ..> util
 model ..> constraints

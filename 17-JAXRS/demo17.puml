@@ -6,10 +6,6 @@ package "main" {
     class MainREST #8FBC8F
 }
 
-package "test" {
-    class ItemServiceTest
-}
-
 package "webapp"  <<Cloud>> {
     class newItem
     class newBook
@@ -31,8 +27,8 @@ package "service" {
     class DatabaseProducer
     class DBPopulator << @Singleton >>
 
-    ItemService <.. NumberGenerator : @Inject
-    DBPopulator <.. ItemService : @Inject
+    ItemService <.right. NumberGenerator : @Inject
+    DBPopulator <.down. ItemService : @Inject
     NumberGenerator <|.. IsbnGenerator
     NumberGenerator <|.. IssnGenerator
     NumberGenerator <|.. MockGenerator
@@ -53,7 +49,7 @@ package "model" {
     Item <|-- Book
     CD --> "*" Track
     Book --> "*" String
-    Book --> "*" Chapter
+    Book -right-> "*" Chapter
     Book --> Language
     Book ..> LanguageConverter
 }
@@ -71,7 +67,6 @@ package "util" {
     class CDIDebug << Extension >>
 }
 
-test ..> service
 webapp ..> view
 view ..> service
 service ..> model

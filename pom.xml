@@ -29,7 +29,7 @@
     </modules>
 
     <properties>
-        <version.glassfish>4.1.1</version.glassfish>
+        <version.glassfish>4.1</version.glassfish>
         <version.primefaces>5.1</version.primefaces>
         <version.deltaspike>1.2.0</version.deltaspike>
         <version.weld>2.2.0.Final</version.weld>

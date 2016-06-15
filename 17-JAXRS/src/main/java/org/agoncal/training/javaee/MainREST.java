@@ -64,7 +64,7 @@ public class MainREST {
                 .add("price", "29.99")
                 .add("description", "Dummy Description")
                 .add("isbn", "1430258489")
-                .add("nbOfPages", "240")
+                .add("nbOfPage", "240")
                 .add("publicationDate", "2013-06-26")
                 .add("contentLanguage", "ITALIAN")
                 .build();

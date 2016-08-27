@@ -16,4 +16,5 @@ rebel.xml
 .settings
 WebContent
 *dummy*.*
+*.png
 

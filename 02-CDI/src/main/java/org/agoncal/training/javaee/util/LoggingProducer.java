@@ -18,7 +18,7 @@ public class LoggingProducer {
     // =          Producer methods          =
     // ======================================
 
-    @Produces
+    @Produces // TODO Get rid of @Produces and see what happens
     public Logger produceLogger(InjectionPoint injectionPoint) {
         return LogManager.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }

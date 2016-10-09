@@ -1,4 +1,4 @@
-package org.agoncal.training.javaee.service;
+package org.agoncal.training.javaee.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -15,7 +15,7 @@ public class ApplicationConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
-        classes.add(ItemService.class);
+        classes.add(ItemRest.class);
         return classes;
     }
 }

@@ -12,11 +12,8 @@ import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.persistence.EntityManager;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
@@ -27,7 +24,6 @@ import java.util.List;
  */
 @Loggable
 @Stateless
-@Path("/items")
 public class ItemService {
 
     // ======================================
@@ -54,7 +50,6 @@ public class ItemService {
     // =          Business methods          =
     // ======================================
 
-    @GET
     public String generateNumber() {
         String number = numberGenerator.generateNumber();
         logger.debug("Number generated" + number);
@@ -65,9 +60,6 @@ public class ItemService {
         return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 
-    @POST
-    @Path("book")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Book createBook(Book book) {
         book.setIsbn(numberGenerator.generateNumber());
         em.persist(book);
@@ -75,21 +67,12 @@ public class ItemService {
         return book;
     }
 
-    @GET
-    @Path("book/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Book findBook(@PathParam("id") @Max(10000) Long id) {
+    public Book findBook(@NotNull Long id) {
         return em.find(Book.class, id);
     }
 
     public void removeBook(Book book) {
         em.remove(em.merge(book));
-    }
-
-    @DELETE
-    @Path("book/{id}")
-    public void removeBook(@PathParam("id") Long id) {
-        em.remove(em.find(Book.class, id));
     }
 
     public Book raiseBookPrice(@NotNull Long id, @Min(1) Float raise) {
@@ -99,9 +82,6 @@ public class ItemService {
         return book;
     }
 
-    @GET
-    @Path("books")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Book> findAllBooks() {
         return em.createNamedQuery("findAllBooks", Book.class).getResultList();
     }
@@ -111,10 +91,7 @@ public class ItemService {
         return cd;
     }
 
-    @GET
-    @Path("cd/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CD findCD(@PathParam("id") @Max(10000) Long id) {
+    public CD findCD(@NotNull Long id) {
         return em.find(CD.class, id);
     }
 
@@ -122,9 +99,6 @@ public class ItemService {
         em.remove(em.merge(cd));
     }
 
-    @GET
-    @Path("cds")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<CD> findAllCDs() {
         return em.createNamedQuery("findAllCDs", CD.class).getResultList();
     }

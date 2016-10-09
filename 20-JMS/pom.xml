@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.agoncal.training.javaee7</groupId>
-    <artifactId>18-JMS</artifactId>
+    <artifactId>20-JMS</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
     <name>20 - JMS</name>

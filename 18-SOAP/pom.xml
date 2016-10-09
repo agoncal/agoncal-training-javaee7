@@ -41,6 +41,28 @@
 
     <build>
         <finalName>cdbookstore</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <!--Optional-->
+                            <!--Reads a JAX-WS service endpoint implementation class and generates all of the portable artifacts for a JAX-WS web service-->
+                            <sei>org.agoncal.training.javaee.soap.ItemSoap</sei>
+                            <genWsdl>true</genWsdl>
+                            <verbose>true</verbose>
+                            <keep>true</keep>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

@@ -25,6 +25,8 @@
         <module>15-JSF</module>
         <module>16-JAXRS</module>
         <module>17-JAXRS</module>
+        <module>18-SOAP</module>
+        <module>19-SOAP</module>
         <module>20-JMS</module>
     </modules>
 
@@ -46,6 +48,7 @@
         <version.maven.helper.plugin>1.12</version.maven.helper.plugin>
         <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
         <version.maven.jar.plugin>3.0.2</version.maven.jar.plugin>
+        <version.maven.jaxws.plugin>2.4.1</version.maven.jaxws.plugin>
         <version.maven.resources.plugin>3.0.1</version.maven.resources.plugin>
         <version.maven.site.plugin>3.5.1</version.maven.site.plugin>
         <version.maven.surefire.plugin>2.19.1</version.maven.surefire.plugin>
@@ -214,6 +217,11 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jaxws-maven-plugin</artifactId>
+                    <version>${version.maven.jaxws.plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

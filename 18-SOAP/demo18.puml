@@ -14,8 +14,12 @@ package "view"  {
 }
 
 package "rest"  {
-    class ItemRest  << Path >> #8FBC8F
-    class ApplicationConfig #8FBC8F
+    class ItemRest  << Path >>
+    class ApplicationConfig
+}
+
+package "soap"  {
+    class ItemSoap  << WebService >> #8FBC8F
 }
 
 package "service" {
@@ -37,10 +41,10 @@ package "service" {
 package "model" {
     class DebugListener
     class Item << @Entity >> << @NamedQuery >>
-    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >> << XmlRootElement >> #8FBC8F
+    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >> << XmlRootElement >>
     class Track << @Entity >>
     class Chapter << @Entity >>
-    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >> << ChronologicalDates >> << XmlRootElement >> #8FBC8F
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >> << ChronologicalDates >> << XmlRootElement >>
     class String
     enum Language
     class LanguageConverter << @Converter >>
@@ -69,6 +73,7 @@ package "util" {
 
 webapp ..> view
 rest ..> service
+soap ..> service
 view ..> service
 service ..> model
 service ..> util

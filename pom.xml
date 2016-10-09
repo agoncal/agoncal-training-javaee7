@@ -25,7 +25,7 @@
         <module>15-JSF</module>
         <module>16-JAXRS</module>
         <module>17-JAXRS</module>
-        <module>18-JMS</module>
+        <module>20-JMS</module>
     </modules>
 
     <properties>

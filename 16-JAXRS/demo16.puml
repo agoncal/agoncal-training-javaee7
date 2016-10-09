@@ -13,13 +13,17 @@ package "view"  {
     class ItemController
 }
 
+package "rest"  {
+    class ItemRest  << Path >> #8FBC8F
+    class ApplicationConfig #8FBC8F
+}
+
 package "service" {
     interface NumberGenerator
     class IsbnGenerator << @ThirteenDigits >>
     class IssnGenerator << @EightDigits >>
     class MockGenerator << @Alternative >>
-    class ItemService << @Stateless >> << Path >> #8FBC8F
-    class ApplicationConfig #8FBC8F
+    class ItemService << @Stateless >>
     class DatabaseProducer
     class DBPopulator << @Singleton >>
 
@@ -64,6 +68,7 @@ package "util" {
 }
 
 webapp ..> view
+rest ..> service
 view ..> service
 service ..> model
 service ..> util

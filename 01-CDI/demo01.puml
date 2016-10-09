@@ -1,0 +1,28 @@
+@startuml
+
+hide members
+
+package "main" {
+    class MainCDI
+}
+package "test" {
+    class ItemServiceTest
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService
+
+    ItemService <.right. NumberGenerator : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+main ..> service
+test ..> service
+
+@enduml

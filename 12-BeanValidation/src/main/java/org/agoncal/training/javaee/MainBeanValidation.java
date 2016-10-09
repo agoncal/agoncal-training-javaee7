@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,9 +47,24 @@ public class MainBeanValidation {
         Book book = new Book(4044L, "H2G2", 12.5F, "Best IT Scifi Book", 247, true, Language.ENGLISH);
 
         // Validates the book
-        Set<ConstraintViolation<Book>> constraints = validator.validate(book);
-        logger.info("Number of violated constraints : " + constraints.size());
-        for (ConstraintViolation<Book> violation : constraints) {
+        Set<ConstraintViolation<Book>> bookConstraints = validator.validate(book);
+        logger.info("Number of violated constraints for Book : " + bookConstraints.size());
+        for (ConstraintViolation<Book> violation : bookConstraints) {
+            logger.info("   Bean     : " + violation.getRootBeanClass().getSimpleName());
+            logger.info("   Property : " + violation.getPropertyPath());
+            logger.info("   Value    : " + violation.getInvalidValue());
+            logger.info("   Template : " + violation.getMessageTemplate());
+            logger.info("   Message  : " + violation.getMessage());
+        }
+
+        // Creates a CD
+        // TODO Change the values to invalid ones and see what is displayed
+        CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
+
+        // Validates the CD
+        Set<ConstraintViolation<CD>> cdConstraints = validator.validate(cd);
+        logger.info("Number of violated constraints for CD : " + cdConstraints.size());
+        for (ConstraintViolation<CD> violation : cdConstraints) {
             logger.info("   Bean     : " + violation.getRootBeanClass().getSimpleName());
             logger.info("   Property : " + violation.getPropertyPath());
             logger.info("   Value    : " + violation.getInvalidValue());

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
@@ -67,7 +68,7 @@ public class ItemService {
     @GET
     @Path("book/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Book findBook(@PathParam("id") @NotNull Long id) {
+    public Book findBook(@PathParam("id") @Max(10000) Long id) {
         return em.find(Book.class, id);
     }
 
@@ -103,7 +104,7 @@ public class ItemService {
     @GET
     @Path("cd/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CD findCD(@PathParam("id") @NotNull Long id) {
+    public CD findCD(@PathParam("id") @Max(10000) Long id) {
         return em.find(CD.class, id);
     }
 

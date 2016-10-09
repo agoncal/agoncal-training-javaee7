@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 // TODO Change inheritance strategy, generate the schema and check the differences
+// TODO Change Entity to MappedSuperclass
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "disc", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("I")

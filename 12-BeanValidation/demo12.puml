@@ -1,0 +1,73 @@
+@startuml
+
+hide members
+
+package "main" {
+    class MainEJB
+    class MainJPA
+    class MainJPASchemaGen
+    class MainBeanValidation #8FBC8F
+}
+package "test" {
+    class ItemServiceTest
+    class BookTest #8FBC8F
+    class ChapterTest
+    class CDTest #8FBC8F
+    class ItemTest
+    class TrackTest
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService << @Stateless >>
+    class DatabaseProducer
+    class DBPopulator << @Singleton >> << @DataSourceDefinition >>
+
+    ItemService <.right. NumberGenerator : @Inject
+    DBPopulator <.down. ItemService : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+package "model" {
+    class DebugListener
+    class Item << @Entity >> << @NamedQuery >> #8FBC8F
+    class CD << @Entity >> << @NamedQuery >> << @EntityListeners >> #8FBC8F
+    class Track << @Entity >>
+    class Chapter << @Entity >>
+    class Book << @Entity >> << @NamedQuery >> << @EntityListeners >>
+    class String
+    enum Language
+    class LanguageConverter << @Converter >>
+
+    Item <|-- CD
+    Item <|-- Book
+    CD --> "*" Track
+    Book --> "*" String
+    Book -right-> "*" Chapter
+    Book --> Language
+    Book ..> LanguageConverter
+}
+
+package "constraints" {
+    annotation MusicGenre << @Constraint >> #8FBC8F
+}
+
+package "util" {
+    annotation Loggable
+    class LoggingInterceptor << @Loggable >>
+    class LoggingProducer
+    class CDIDebug << Extension >>
+}
+
+main ..> service
+test ..> service
+service ..> model
+service ..> util
+model ..> constraints
+
+@enduml

@@ -1,6 +1,7 @@
 package org.agoncal.training.javaee;
 
 import org.agoncal.training.javaee.model.Book;
+import org.agoncal.training.javaee.model.CD;
 import org.agoncal.training.javaee.model.Language;
 import org.agoncal.training.javaee.service.ItemService;
 import org.apache.logging.log4j.LogManager;
@@ -52,7 +53,7 @@ public class MainBeanValidation {
 
         // Validates the book
         Set<ConstraintViolation<Book>> constraints = validator.validate(book);
-        logger.info("Number of violated constraints : " + constraints.size());
+        logger.info("Number of violated constraints for Book : " + constraints.size());
         for (ConstraintViolation<Book> violation : constraints) {
             logger.info("   Bean     : " + violation.getRootBeanClass().getSimpleName());
             logger.info("   Property : " + violation.getPropertyPath());
@@ -62,8 +63,9 @@ public class MainBeanValidation {
         }
 
         // Sets non chronological dates
+        // TODO change dates chronological order
         book.setEarlyAccessDate(dateFormat.parse("2018-01-01"));
-        book.setPublicationDate(dateFormat.parse("2010-01-01"));
+        book.setPublicationDate(dateFormat.parse("2019-01-01"));
 
         // Validates the book
         constraints = validator.validate(book);
@@ -80,7 +82,8 @@ public class MainBeanValidation {
 
         ItemService object = new ItemService();
         Method method = ItemService.class.getMethod("findCD", Long.class);
-        Object[] parameterValues = new Object[]{null};
+        // TODO change passed parameter value
+        Object[] parameterValues = new Object[]{new Long(1L)};
 
         Set<ConstraintViolation<ItemService>> violations = executableValidator.validateParameters(object, method, parameterValues);
 
@@ -93,6 +96,19 @@ public class MainBeanValidation {
             logger.info("   Message  : " + violation.getMessage());
         }
 
+        // Creates a CD
+        CD cd = new CD(2022L, "St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
+
+        // Validates the CD
+        Set<ConstraintViolation<CD>> cdConstraints = validator.validate(cd);
+        logger.info("Number of violated constraints for CD : " + cdConstraints.size());
+        for (ConstraintViolation<CD> violation : cdConstraints) {
+            logger.info("   Bean     : " + violation.getRootBeanClass().getSimpleName());
+            logger.info("   Property : " + violation.getPropertyPath());
+            logger.info("   Value    : " + violation.getInvalidValue());
+            logger.info("   Template : " + violation.getMessageTemplate());
+            logger.info("   Message  : " + violation.getMessage());
+        }
 
         vf.close();
     }

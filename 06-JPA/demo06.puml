@@ -1,0 +1,63 @@
+@startuml
+
+hide members
+
+package "main" {
+    class MainCDI
+    class MainJPA #8FBC8F
+    class MainJPASchemaGen
+}
+package "test" {
+    class ItemServiceTest
+    class BookTest #8FBC8F
+    class ChapterTest #8FBC8F
+    class CDTest #8FBC8F
+    class ItemTest #8FBC8F
+    class TrackTest #8FBC8F
+}
+
+package "service" {
+    interface NumberGenerator
+    class IsbnGenerator << @ThirteenDigits >>
+    class IssnGenerator << @EightDigits >>
+    class MockGenerator << @Alternative >>
+    class ItemService
+
+    ItemService <.right. NumberGenerator : @Inject
+    NumberGenerator <|.. IsbnGenerator
+    NumberGenerator <|.. IssnGenerator
+    NumberGenerator <|.. MockGenerator
+}
+
+package "model" {
+    class Item << @Entity >>
+    class CD << @Entity >>
+    class Track << @Entity >>
+    class Chapter << @Entity >>
+    class Book << @Entity >>
+    class String
+    enum Language
+    class LanguageConverter << @Converter >>
+
+    Item <|-- CD
+    Item <|-- Book
+    CD --> "*" Track
+    Book --> "*" String
+    Book -right-> "*" Chapter
+    Book --> Language
+    Book ..> LanguageConverter
+}
+
+package "util" {
+    annotation Loggable
+    class LoggingInterceptor << @Loggable >>
+    class LoggingProducer
+    class CDIDebug << Extension >>
+}
+
+main ..> service
+test ..> service
+service ..> model
+service ..> util
+
+@enduml

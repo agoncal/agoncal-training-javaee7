@@ -4,6 +4,7 @@ import org.agoncal.training.javaee.constraints.ChronologicalDates;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ import static javax.persistence.TemporalType.DATE;
 @EntityListeners(DebugListener.class)
 @ChronologicalDates
 @XmlRootElement
-public class Book extends Item {
+public class Book extends Item implements Serializable {
 
     // ======================================
     // =             Attributes             =

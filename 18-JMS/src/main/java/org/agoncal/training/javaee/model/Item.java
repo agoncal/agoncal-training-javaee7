@@ -16,7 +16,7 @@ import java.io.Serializable;
 @DiscriminatorColumn(name = "disc", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("I")
 @NamedQuery(name = "findAllItems", query = "SELECT i FROM Item i")
-public class Item implements Serializable {
+public class Item {
 
     // ======================================
     // =             Attributes             =

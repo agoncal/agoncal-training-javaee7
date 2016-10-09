@@ -11,6 +11,7 @@ import java.util.List;
  *         --
  */
 @Entity
+// TODO Changing mapping annotation and see what happens in generated ddl
 public class Book {
 
     // ======================================

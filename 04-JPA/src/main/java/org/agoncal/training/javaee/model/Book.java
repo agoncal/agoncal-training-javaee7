@@ -36,8 +36,9 @@ public class Book {
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();
 
-    // TODO Get rid of the cascade and see what happens
+    // TODO Use @JoinColumn instead and see what happens
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book_chapters")
     private List<Chapter> chapters = new ArrayList<>();
 
     // ======================================

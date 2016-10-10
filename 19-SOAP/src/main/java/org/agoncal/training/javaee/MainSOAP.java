@@ -20,13 +20,13 @@ import javax.ws.rs.core.Response;
  *         --
  */
 @Vetoed
-public class MainREST {
+public class MainSOAP {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    private static final Logger logger = LogManager.getLogger(MainREST.class);
+    private static final Logger logger = LogManager.getLogger(MainSOAP.class);
     private static final String baseURL = "http://localhost:8080/cdbookstore";
 
 

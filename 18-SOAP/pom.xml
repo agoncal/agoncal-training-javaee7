@@ -51,16 +51,14 @@
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
-                        <configuration>
-                            <!--Optional-->
-                            <!--Reads a JAX-WS service endpoint implementation class and generates all of the portable artifacts for a JAX-WS web service-->
-                            <sei>org.agoncal.training.javaee.soap.ItemSoap</sei>
-                            <genWsdl>true</genWsdl>
-                            <verbose>true</verbose>
-                            <keep>true</keep>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <sei>org.agoncal.training.javaee.soap.ItemSoap</sei>
+                    <genWsdl>true</genWsdl>
+                    <verbose>true</verbose>
+                    <keep>true</keep>
+                </configuration>
             </plugin>
         </plugins>
     </build>

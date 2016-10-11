@@ -44,6 +44,11 @@ The aim of this training course is to learn Java EE 7 while running some code. I
 
 Based on [Lubuntu](http://lubuntu.net/).
 
+VBox Guest Addition
+/media/osboxes/VBOXADDITIONS
+sudo ./VBoxLinuxAdditions.run
+
+
 Configuration :
 * `setxkbmap fr`
 * `sudo dpkg-reconfigure keyboard-configuration`

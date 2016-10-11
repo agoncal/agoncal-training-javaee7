@@ -62,6 +62,8 @@ Installation :
 * `sudo apt install httpie`
 * `sudo apt install curl`
 * `sudo apt-get install virtualbox-guest-additions-iso`
+* `sudo apt-get install graphviz`
+
 
 
 # Licensing

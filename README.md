@@ -56,6 +56,8 @@ Installation :
 * `sudo apt install tree`
 * `sudo apt install httpie`
 * `sudo apt install curl`
+sudo apt-get install virtualbox-guest-additions-iso
+
 
 # Licensing
 

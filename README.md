@@ -42,6 +42,23 @@ The aim of this training course is to learn Java EE 7 while running some code. I
 
 # Virtual Box
 
+## Content
+
+Password : javaee7
+
+### Commands
+
+* java
+* mvn
+* standalone.sh (starts WildFly)
+
+### Variables
+
+* $CODE_HOME
+* $TOOLS_HOME
+
+## Installation 
+
 Based on [Lubuntu](http://lubuntu.net/).
 
 VBox Guest Addition

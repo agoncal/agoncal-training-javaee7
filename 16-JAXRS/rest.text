@@ -1,34 +1,50 @@
 @rem Books
 
 @rem XML representation of a book
-@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rs/items/book/1
+@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rest/items/book/1
 
 @rem JSon representation of a book
-@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rs/items/book/1
+@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/book/1
 
 @rem XML representation of all the books
-@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rs/items/books
+@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rest/items/books
 
 @rem JSon representation of all the books
-@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rs/items/books
+@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/books
 
 @rem Create a book
-@rem curl -X POST --data-binary "{ \"title\":\"H3G3\", \"price\":\"24.0\", \"description\":\"3rd Scifi IT book\", \"illustrations\":\"false\", \"isbn\":\"134-234\", \"nbOfPage\":\"241\" }" -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/cdbookstore/rs/items/book
+@rem curl -X POST --data-binary "{ \"title\":\"H3G3\", \"price\":\"24.0\", \"description\":\"3rd Scifi IT book\", \"illustrations\":\"false\", \"isbn\":\"134-234\", \"nbOfPage\":\"241\" }" -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/book
 
 @rem Deletes a book
-@rem curl -X DELETE http://localhost:8080/cdbookstore/rs/items/book/2902
+@rem curl -X DELETE http://localhost:8080/cdbookstore/rest/items/book/2902
 
 
 @rem CDs
 
 @rem XML representation of a CD
-@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rs/items/cd/2401
+@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rest/items/cd/2401
 
 @rem JSon representation of a CD
-@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rs/items/cd/2401
+@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/cd/2401
 
 @rem XML representation of all the CDs
-@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rs/items/cds
+@rem curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rest/items/cds
 
 @rem JSon representation of all the CDs
-@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rs/items/cds
+@rem curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/cds
+
+
+
+
+    {
+        "title": "New Book",
+        "price": 19.99,
+        "description": "Created from REST Client",
+        "isbn": "13-84356-66696669666",
+        "nbOfPage": 666,
+        "illustrations": true,
+        "earlyAccessDate": null,
+        "publicationDate": null,
+        "contentLanguage": "ENGLISH",
+    }
+

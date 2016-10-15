@@ -6,8 +6,7 @@ import org.agoncal.training.javaee.util.Loggable;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import javax.jws.WebMethod;
-import javax.jws.WebService;
+import javax.jws.*;
 import javax.validation.constraints.Max;
 import java.util.List;
 
@@ -19,6 +18,7 @@ import java.util.List;
  */
 @Loggable
 @WebService
+// TODO Change the WS* annotation and generate the WSDL with mvn clean compile jaxws:wsgen
 public class ItemSoap {
 
     // ======================================
@@ -36,6 +36,7 @@ public class ItemSoap {
     // ======================================
 
     @WebMethod(operationName = "GenerateNumber")
+    @WebResult(name = "GeneratedNumber")
     public String generateNumber() {
         String number = itemService.generateNumber();
         logger.debug("Number generated" + number);
@@ -54,12 +55,14 @@ public class ItemSoap {
     }
 
     @WebMethod(operationName = "RemoveBook")
-    public void removeBook(Long id) {
+    @Oneway
+    public void removeBook(@WebParam(name = "BookID") Long id) {
         Book toDeleted = itemService.findBook(id);
         itemService.removeBook(toDeleted);
     }
 
     @WebMethod(operationName = "FindAllBooks")
+    @WebResult(name = "Books")
     public List<Book> findAllBooks() {
         return itemService.findAllBooks();
     }

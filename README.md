@@ -40,6 +40,49 @@ The aim of this training course is to learn Java EE 7 while running some code. I
 * `mvn clean test` runs all the tests
 * `mvn versions:display-plugin-updates` checks plugin versions
 
+# Virtual Box
+
+## Content
+
+Password : javaee7
+
+### Commands
+
+* java
+* mvn
+* standalone.sh (starts WildFly)
+
+### Variables
+
+* $CODE_HOME
+* $TOOLS_HOME
+
+## Installation 
+
+Based on [Lubuntu](http://lubuntu.net/).
+
+VBox Guest Addition
+/media/osboxes/VBOXADDITIONS
+sudo ./VBoxLinuxAdditions.run
+
+
+Configuration :
+* `setxkbmap fr`
+* `sudo dpkg-reconfigure keyboard-configuration`
+
+Installation :
+* `sudo apt install openjdk-8-jdk-headless`
+* `sudo apt install git`
+* `sudo apt install maven`
+* `sudo apt install docker.io`
+* `sudo apt install tree`
+* `sudo apt install httpie`
+* `sudo apt install curl`
+* `sudo apt-get install virtualbox-guest-additions-iso`
+* `sudo apt-get install graphviz`
+
+
+
 # Licensing
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.

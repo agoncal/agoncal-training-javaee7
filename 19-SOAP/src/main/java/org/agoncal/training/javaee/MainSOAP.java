@@ -1,13 +1,14 @@
 package org.agoncal.training.javaee;
 
-import localhost._8080.cdbookstore.Book;
-import localhost._8080.cdbookstore.ItemSoap;
-import localhost._8080.cdbookstore.ItemSoapService;
-import localhost._8080.cdbookstore.Language;
+import org.agoncal.training.javaee.soap.Book;
+import org.agoncal.training.javaee.soap.ItemSoap;
+import org.agoncal.training.javaee.soap.ItemSoapService;
+import org.agoncal.training.javaee.soap.Language;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.inject.Vetoed;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -43,7 +44,10 @@ public class MainSOAP {
         logger.info("#### findAllBooks");
 
         ItemSoap itemService = new ItemSoapService().getItemSoapPort();
-        logger.info(itemService.findAllBooks());
+        List<Book> books = itemService.findAllBooks();
+        for (Book book : books) {
+            logger.info(book.getTitle());
+        }
     }
 
     private static void createBook()
@@ -59,7 +63,8 @@ public class MainSOAP {
         book.setContentLanguage(Language.ITALIAN);
 
         ItemSoap itemService = new ItemSoapService().getItemSoapPort();
-        logger.info(itemService.createBook(book));
+        Book result = itemService.createBook(book);
+        logger.info(result.getId());
     }
 
     private static void findBookById(String id)
@@ -67,7 +72,8 @@ public class MainSOAP {
         logger.info("#### findBookById");
 
         ItemSoap itemService = new ItemSoapService().getItemSoapPort();
-        logger.info(itemService.findBook(Long.valueOf(id)));
+        Book book = itemService.findBook(Long.valueOf(id));
+        logger.info(book.getTitle());
     }
 
     private static void removeBookById(String id)

@@ -43,12 +43,12 @@
                         <configuration>
                             <!--Stubs can be created either by wsdl URL (GlassFish need to be running with the WS deployed)-->
                             <!--Or by wsdl files (these files are located under the wsdl directory)-->
-                            <!--<wsdlUrls>-->
-                                <!--<wsdlUrl>http://localhost:8080/cdbookstore/ItemSoap?wsdl</wsdlUrl>-->
-                            <!--</wsdlUrls>-->
-                            <wsdlFiles>
-                                <wsdlFile>ItemSoapService.wsdl</wsdlFile>
-                            </wsdlFiles>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:8080/cdbookstore/ItemSoap?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <!--<wsdlFiles>-->
+                                <!--<wsdlFile>ItemSoapService.wsdl</wsdlFile>-->
+                            <!--</wsdlFiles>-->
                             <keep>true</keep>
                         </configuration>
                     </execution>

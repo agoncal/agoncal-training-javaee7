@@ -13,7 +13,7 @@
 `curl -X GET -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/books`
 
 ### Create a book
-`curl -X POST --data-binary "{ \"title\":\"H3G3\", \"price\":\"24.0\", \"description\":\"3rd Scifi IT book\", \"illustrations\":\"false\", \"isbn\":\"134-234\", \"nbOfPage\":\"241\" }" -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/book`
+`curl -X POST --data-binary "{ \"title\":\"Dummy Title\", \"price\":\"29.99\", \"description\":\"Dummy Description\", \"isbn\":\"13-84356-731917428\", \"nbOfPage\":\"240\" }" -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/cdbookstore/rest/items/book`
 
 {"title":"Dummy Title","price":29.99,"description":"Dummy Description","isbn":"13-84356-731917428","nbOfPage":240,"contentLanguage":"ITALIAN"}
 

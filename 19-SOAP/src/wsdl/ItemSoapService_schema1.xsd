@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema xmlns:tns="http://soap.javaee.training.agoncal.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    version="1.0" targetNamespace="http://soap.javaee.training.agoncal.org/">
+<xs:schema xmlns:tns="http://localhost:8080/cdbookstore/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="1.0" targetNamespace="http://localhost:8080/cdbookstore/">
 
   <xs:element name="CreateBook" type="tns:CreateBook"/>
 

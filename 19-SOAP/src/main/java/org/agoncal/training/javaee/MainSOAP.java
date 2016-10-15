@@ -1,17 +1,13 @@
 package org.agoncal.training.javaee;
 
+import localhost._8080.cdbookstore.Book;
+import localhost._8080.cdbookstore.ItemSoap;
+import localhost._8080.cdbookstore.ItemSoapService;
+import localhost._8080.cdbookstore.Language;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.inject.Vetoed;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Antonio Goncalves
@@ -46,61 +42,40 @@ public class MainSOAP {
     {
         logger.info("#### findAllBooks");
 
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL).path("rest").path("items").path("books");
-        logger.info(target.getUri().toString());
-
-        Response response = target.request(MediaType.APPLICATION_JSON).get();
-        logger.info(response.getStatus());
-        logger.info(response.readEntity(String.class));
+        ItemSoap itemService = new ItemSoapService().getItemSoapPort();
+        logger.info(itemService.findAllBooks());
     }
 
     private static void createBook()
     {
         logger.info("#### createBook");
 
-        JsonObject json = Json.createObjectBuilder()
-                .add("title", "Dummy Title")
-                .add("price", "29.99")
-                .add("description", "Dummy Description")
-                .add("isbn", "1430258489")
-                .add("nbOfPage", "240")
-                .add("publicationDate", "2013-06-26")
-                .add("contentLanguage", "ITALIAN")
-                .build();
+        Book book = new Book();
+        book.setTitle("Dummy Title");
+        book.setPrice(29.99F);
+        book.setDescription("Dummy Description");
+        book.setIsbn("1430258489");
+        book.setNbOfPage(240);
+        book.setContentLanguage(Language.ITALIAN);
 
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL).path("rest").path("items").path("book");
-        logger.info(target.getUri().toString());
-
-        Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(json.toString()));
-        logger.info(response.getStatus());
-        logger.info(response.readEntity(String.class));
+        ItemSoap itemService = new ItemSoapService().getItemSoapPort();
+        logger.info(itemService.createBook(book));
     }
 
     private static void findBookById(String id)
     {
         logger.info("#### findBookById");
 
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL).path("rest").path("items").path("book").path(id);
-        logger.info(target.getUri().toString());
-
-        Response response = target.request(MediaType.APPLICATION_JSON).get();
-        logger.info(response.getStatus());
-        logger.info(response.readEntity(String.class));
+        ItemSoap itemService = new ItemSoapService().getItemSoapPort();
+        logger.info(itemService.findBook(Long.valueOf(id)));
     }
 
     private static void removeBookById(String id)
     {
         logger.info("#### removeBookById");
 
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL).path("rest").path("items").path("book").path(id);
-        logger.info(target.getUri().toString());
-
-        Response response = target.request(MediaType.APPLICATION_JSON).delete();
-        logger.info(response.getStatus());
+        ItemSoap itemService = new ItemSoapService().getItemSoapPort();
+        itemService.removeBook(Long.valueOf(id));
     }
 }
 

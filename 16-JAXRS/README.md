@@ -1,4 +1,4 @@
-# Books
+# REST
 
 ### Get an XML representation of a book
 `curl -X GET -H "Accept: application/xml" http://localhost:8080/cdbookstore/rest/items/book/1`

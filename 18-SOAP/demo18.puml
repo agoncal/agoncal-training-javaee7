@@ -2,6 +2,10 @@
 
 hide members
 
+package "main" {
+    class MainREST
+}
+
 package "webapp"  <<Cloud>> {
     class newItem
     class newBook

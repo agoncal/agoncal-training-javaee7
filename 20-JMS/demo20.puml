@@ -4,6 +4,7 @@ hide members
 
 package "main" {
     class MainREST
+    class MainSOAP
 }
 
 package "webapp"  <<Cloud>> {
@@ -20,6 +21,10 @@ package "view"  {
 package "rest"  {
     class ItemRest  << Path >>
     class ApplicationConfig
+}
+
+package "soap"  {
+    class ItemSoap  << WebService >>
 }
 
 package "service" {
@@ -73,6 +78,7 @@ package "util" {
 
 webapp ..> view
 rest ..> service
+soap ..> service
 view ..> service
 service ..> model
 service ..> util

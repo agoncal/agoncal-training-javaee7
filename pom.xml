@@ -40,6 +40,7 @@
         <version.derby>10.11.1.1</version.derby>
         <version.log4j>2.1</version.log4j>
         <version.junit>4.11</version.junit>
+        <version.plantuml>8048</version.plantuml>
         <!-- Plugins -->
         <version.maven.clean.plugin>3.0.0</version.maven.clean.plugin>
         <version.maven.compiler.plugin>3.5.1</version.maven.compiler.plugin>
@@ -49,6 +50,7 @@
         <version.maven.install.plugin>2.5.2</version.maven.install.plugin>
         <version.maven.jar.plugin>3.0.2</version.maven.jar.plugin>
         <version.maven.jaxws.plugin>2.4.1</version.maven.jaxws.plugin>
+        <version.maven.plantuml.plugin>1.2</version.maven.plantuml.plugin>
         <version.maven.resources.plugin>3.0.1</version.maven.resources.plugin>
         <version.maven.site.plugin>3.5.1</version.maven.site.plugin>
         <version.maven.surefire.plugin>2.19.1</version.maven.surefire.plugin>
@@ -148,6 +150,7 @@
         <defaultGoal>test</defaultGoal>
         <pluginManagement>
             <plugins>
+                <!-- Apache -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -206,6 +209,7 @@
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
+                <!-- CodeHaus -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
@@ -228,6 +232,35 @@
                             <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                         </vmArgs>
                     </configuration>
+                </plugin>
+                <!-- GitHub -->
+                <plugin>
+                    <groupId>com.github.jeluard</groupId>
+                    <artifactId>plantuml-maven-plugin</artifactId>
+                    <version>${version.maven.plantuml.plugin}</version>
+                    <configuration>
+                        <sourceFiles>
+                            <directory>${project.basedir}</directory>
+                            <includes>
+                                <include>**/*.puml</include>
+                            </includes>
+                        </sourceFiles>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.plantuml</groupId>
+                            <artifactId>plantuml</artifactId>
+                            <version>${version.plantuml}</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

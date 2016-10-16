@@ -39,6 +39,7 @@ The aim of this training course is to learn Java EE 7 while running some code. I
 
 * `mvn clean test` runs all the tests
 * `mvn versions:display-plugin-updates` checks plugin versions
+* `mvn clean com.github.jeluard:plantuml-maven-plugin:generate` generates PNG images from the PUML files
 
 # Virtual Box
 

@@ -12,7 +12,7 @@ import java.util.Random;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@EightDigits
+@EightDigits // TODO rename it to @ThirteenDigits
 public class IssnGenerator implements NumberGenerator {
 
     // ======================================

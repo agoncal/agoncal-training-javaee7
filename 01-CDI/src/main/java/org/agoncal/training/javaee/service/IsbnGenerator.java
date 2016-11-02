@@ -12,7 +12,7 @@ import java.util.Random;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@ThirteenDigits
+@ThirteenDigits // TODO Get rid of the qualifier
 public class IsbnGenerator implements NumberGenerator {
 
     // ======================================

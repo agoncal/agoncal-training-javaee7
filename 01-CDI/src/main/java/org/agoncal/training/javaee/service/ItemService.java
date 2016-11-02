@@ -18,7 +18,7 @@ public class ItemService {
     // ======================================
 
     @Inject
-    @ThirteenDigits
+    @ThirteenDigits // TODO Change to @EightDigits
     private NumberGenerator numberGenerator;
 
     private static final Logger logger = LogManager.getLogger(ItemService.class.getName());

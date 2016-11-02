@@ -13,6 +13,7 @@ import java.util.Random;
  *         --
  */
 @ThirteenDigits
+// TODO Add @Loggable
 public class IsbnGenerator implements NumberGenerator {
 
     // ======================================

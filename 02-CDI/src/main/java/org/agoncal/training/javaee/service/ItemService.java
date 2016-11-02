@@ -11,7 +11,7 @@ import javax.inject.Inject;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Loggable
+@Loggable // TODO Get rid of loggable
 public class ItemService {
 
     // ======================================

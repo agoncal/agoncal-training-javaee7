@@ -72,17 +72,18 @@ Configuration :
 * `sudo dpkg-reconfigure keyboard-configuration` (pwd sudo `javaee7`)
 
 Installation :
-* `sudo apt install openjdk-8-jdk-headless`
-* `sudo apt install git`
-* `sudo apt install maven`
-* `sudo apt install docker.io`
-* `sudo apt install tree`
-* `sudo apt install httpie`
-* `sudo apt install curl`
+* `sudo apt-get install openjdk-8-jdk-headless`
+* `sudo apt-get install git`
+* `sudo apt-get install maven`
+* `sudo apt-get install docker.io`
+* `sudo apt-get install tree`
+* `sudo apt-get install httpie`
+* `sudo apt-get install curl`
 * `sudo apt-get install virtualbox-guest-additions-iso`
 * `sudo apt-get install graphviz`
 
-
+Update :
+* `sudo apt-get update`
 
 # Licensing
 

@@ -30,17 +30,20 @@ public class ItemServiceTest {
 
     private static EJBContainer ec;
     private static Context ctx;
+    private static ItemService itemService;
 
     // ======================================
     // =          Lifecycle Methods         =
     // ======================================
 
     @BeforeClass
-    public static void initEJBContainer() {
+    public static void initEJBContainer() throws NamingException {
         Map<String, Object> properties = new HashMap<>();
         properties.put(EJBContainer.MODULES, new File[]{new File("target/classes"), new File("target/test-classes")});
         ec = EJBContainer.createEJBContainer(properties);
         ctx = ec.getContext();
+
+        itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
     }
 
     @AfterClass
@@ -55,10 +58,7 @@ public class ItemServiceTest {
     // ======================================
 
     @Test
-    public void shouldGenerateANumber() throws NamingException {
-
-        // Looks up for the ItemService
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
+    public void shouldGenerateANumber() throws Exception {
 
         // Generates a number
         String number = itemService.generateNumber();
@@ -69,9 +69,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldCreateABook() throws Exception {
-
-        // Looks up for the ItemService
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book
         Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
@@ -96,9 +93,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldRaiseBookPrice() throws Exception {
-
-        // Looks up for the ItemService
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book
         Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
@@ -125,9 +119,6 @@ public class ItemServiceTest {
     @Test
     public void shouldFindAllBooks() throws Exception {
 
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
-
         // Finds all books
         int initialNumberOfBooks = itemService.findAllBooks().size();
 
@@ -153,9 +144,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldCreateABookWithTags() throws Exception {
-
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book with tags
         Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
@@ -187,9 +175,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldCreateABookWithChapters() throws Exception {
-
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a book with tags
         Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
@@ -233,9 +218,6 @@ public class ItemServiceTest {
     @Test(expected = Exception.class)
     public void shouldNotCreateABookWithANullTitle() throws Exception {
 
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
-
         // Creates a book with null title
         Book book = new Book(null, 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
 
@@ -245,8 +227,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldCreateACD() throws Exception {
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Counts all the cds in the database
         int nbCDs = itemService.findAllCDs().size();
@@ -275,9 +255,6 @@ public class ItemServiceTest {
     @Test
     public void shouldFindAllCDs() throws Exception {
 
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
-
         // Finds all books
         int initialNumberOfCDs = itemService.findAllCDs().size();
 
@@ -300,8 +277,6 @@ public class ItemServiceTest {
 
     @Test
     public void shouldCreateACDWithTracks() throws Exception {
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a CD
         CD cd = new CD("St Pepper", 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");
@@ -335,8 +310,6 @@ public class ItemServiceTest {
 
     @Test(expected = Exception.class)
     public void shouldNotCreateACDWithANullTitle() throws Exception {
-        // Looks up for the EJB
-        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
 
         // Creates a CD
         CD cd = new CD(null, 12.80f, "Beatles master piece", "Apple", 1, 53.32f, "Pop");

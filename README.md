@@ -69,7 +69,7 @@ sudo ./VBoxLinuxAdditions.run
 
 Configuration :
 * `setxkbmap fr`
-* `sudo dpkg-reconfigure keyboard-configuration`
+* `sudo dpkg-reconfigure keyboard-configuration` (pwd sudo `javaee7`)
 
 Installation :
 * `sudo apt install openjdk-8-jdk-headless`

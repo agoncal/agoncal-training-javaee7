@@ -2,9 +2,7 @@ package org.agoncal.training.javaee.service;
 
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
@@ -24,15 +22,15 @@ public class ItemServiceTest {
     // =             Attributes             =
     // ======================================
 
-    private CdiContainer cdiContainer;
-    private ItemService itemService;
+    private static CdiContainer cdiContainer;
+    private static ItemService itemService;
 
     // ======================================
     // =          Lifecycle Methods         =
     // ======================================
 
-    @Before
-    public void initBeanManager() {
+    @BeforeClass
+    public static void initBeanManager() {
         // this will give you a CdiContainer for Weld or OWB, depending on the jar you added
         cdiContainer = CdiContainerLoader.getCdiContainer();
 
@@ -47,8 +45,8 @@ public class ItemServiceTest {
         itemService = (ItemService) beanManager.getReference(bean, ItemService.class, beanManager.createCreationalContext(bean));
     }
 
-    @After
-    public void closeBeanManager() {
+    @AfterClass
+    public static void closeBeanManager() {
         cdiContainer.shutdown();
     }
 

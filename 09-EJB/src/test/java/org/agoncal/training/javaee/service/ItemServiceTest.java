@@ -92,6 +92,34 @@ public class ItemServiceTest {
     }
 
     @Test
+    public void shouldRaiseBookPrice() throws Exception {
+
+        // Looks up for the ItemService
+        ItemService itemService = (ItemService) ctx.lookup("java:global/classes/ItemService");
+
+        // Creates a book
+        Book book = new Book("H2G2", 12.5f, "Best IT Scifi Book", 247, false, Language.ENGLISH);
+
+        // Persists a book
+        book = itemService.createBook(book);
+        assertNotNull("ID should not be null", book.getId());
+
+        // Finds the book by primary key
+        book = itemService.findBook(book.getId());
+        assertEquals(book.getPrice(), new Float(12.5f));
+
+        // Raises the price of the book
+        book = itemService.raiseBookPrice(book.getId(), 3.5f);
+        assertEquals(book.getPrice(), new Float(16.0f));
+
+        // Deletes the book
+        itemService.removeBook(book);
+
+        // Checks the book has been deleted
+        assertNull("Book should has been deleted", itemService.findBook(book.getId()));
+    }
+
+    @Test
     public void shouldFindAllBooks() throws Exception {
 
         // Looks up for the EJB

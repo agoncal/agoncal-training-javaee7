@@ -25,6 +25,7 @@
             <property name="javax.persistence.schema-generation.scripts.create-target" value="lab06Create.ddl"/>
             <property name="javax.persistence.schema-generation.scripts.drop-target" value="lab06Drop.ddl"/>
 
+            <!--TODO Change log level to FINE -->
             <property name="eclipselink.logging.level" value="INFO"/>
         </properties>
     </persistence-unit>

@@ -18,7 +18,7 @@ import java.util.List;
  *         --
  */
 @Loggable
-// TODO Change @Stateless with @Transaction, execute Main EJB, what happens ?
+// TODO Change @Stateless with @Transactional, execute Main EJB, what happens ?
 @Stateless
 public class ItemService {
 

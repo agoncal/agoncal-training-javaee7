@@ -24,8 +24,6 @@ public class MainSOAP {
     // ======================================
 
     private static final Logger logger = LogManager.getLogger(MainSOAP.class);
-    private static final String baseURL = "http://localhost:8080/cdbookstore";
-
 
     // ======================================
     // =          Business methods          =

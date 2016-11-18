@@ -1,6 +1,6 @@
 # Java EE 7 Training - Antonio Goncalves
 
-[![Build Status][travis-image]][travis-url]
+[![Build Status](https://travis-ci.org/agoncal/agoncal-training-javaee7.svg?branch=master)](https://travis-ci.org/agoncal/agoncal-training-javaee7)
 
 ### Antonio Goncalves
 
@@ -95,5 +95,3 @@ Book - Beginning Java EE 6 with Glassfish
 Antonio Goncalves
 --
 --
-
-[travis-url]: https://travis-ci.org/agoncal/agoncal-training-javaee7

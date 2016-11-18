@@ -1,5 +1,7 @@
 # Java EE 7 Training - Antonio Goncalves
 
+[![Build Status][travis-image]][travis-url]
+
 ### Antonio Goncalves
 
 Member of Java Community Process on Java EE 6, Java EE 7 and Java EE 8, [Antonio](http://www.antoniogoncalves.org) is primarily a hands on man who advises his customers and develops their architectures.
@@ -93,3 +95,5 @@ Book - Beginning Java EE 6 with Glassfish
 Antonio Goncalves
 --
 --
+
+[travis-url]: https://travis-ci.org/agoncal/agoncal-training-javaee7

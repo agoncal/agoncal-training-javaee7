@@ -37,18 +37,6 @@ public class ItemService {
     private Logger logger;
 
     // ======================================
-    // =            Constructors            =
-    // ======================================
-
-    public ItemService() {
-    }
-
-    public ItemService(EntityManager em, NumberGenerator numberGenerator) {
-        this.em = em;
-        this.numberGenerator = numberGenerator;
-    }
-
-    // ======================================
     // =          Business methods          =
     // ======================================
 

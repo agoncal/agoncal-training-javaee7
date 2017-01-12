@@ -9,9 +9,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         BookTest.class,
         CDTest.class,
-        ChapterTest.class,
-        ItemTest.class,
-        TrackTest.class,
         ItemServiceTest.class
 })
 public class AllTests {

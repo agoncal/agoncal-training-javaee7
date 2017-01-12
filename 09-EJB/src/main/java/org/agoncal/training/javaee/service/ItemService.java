@@ -30,24 +30,11 @@ public class ItemService {
     @ThirteenDigits
     private NumberGenerator numberGenerator;
 
-    // TODO Use the trainingPU peristence unit and see what happens
-    @PersistenceContext(unitName = "trainingPUJTA")
+    @PersistenceContext(unitName = "trainingPU")
     private EntityManager em;
 
     @Inject
     private Logger logger;
-
-    // ======================================
-    // =            Constructors            =
-    // ======================================
-
-    public ItemService() {
-    }
-
-    public ItemService(EntityManager em, NumberGenerator numberGenerator) {
-        this.em = em;
-        this.numberGenerator = numberGenerator;
-    }
 
     // ======================================
     // =          Business methods          =

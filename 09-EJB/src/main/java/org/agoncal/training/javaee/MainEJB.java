@@ -20,7 +20,6 @@ import java.util.Map;
  *         http://www.antoniogoncalves.org
  *         --
  */
-// TODO When executing MainEJB, can you see the CDIDebug logs ?
 @Vetoed
 public class MainEJB {
 

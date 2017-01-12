@@ -29,7 +29,7 @@ public class Book extends Item {
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL) // TODO Get rid of cascade
     private List<Chapter> chapters = new ArrayList<>();
 
     // ======================================

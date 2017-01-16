@@ -55,7 +55,7 @@
         <version.maven.site.plugin>3.5.1</version.maven.site.plugin>
         <version.maven.surefire.plugin>2.19.1</version.maven.surefire.plugin>
         <version.maven.war.plugin>3.0.0</version.maven.war.plugin>
-        <!--Compiler-->
+        <!-- Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
